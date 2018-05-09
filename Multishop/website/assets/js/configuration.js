@@ -3,7 +3,7 @@ $(document).ready(function() {
 	//Confirm of the name
 	$("#settings").submit(function(e){
 		var db = document.getElementById("database").value;
-		if(!confirm("Sei sicuro di voler usare [ "+db+" ] come nome del database?")){
+		if(!confirm("Are you sure to use [ "+db+" ] as database name?")){
 			e.preventDefault();
 		}
     });
