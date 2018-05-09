@@ -3,14 +3,17 @@
 
 <head>
 
+<title>Configuration</title>
 
+<!-- JQuery -->
 <script src="website/assets/js/jquery.js"></script>
-<link rel="icon" href="website/assets/img/favicon.png" type="image/png" sizes="16x16">
 
+<link rel="icon" href="website/assets/img/favicon.png" type="image/png" sizes="16x16">
 <link rel="stylesheet" href="website/assets/css/configuration.css" type="text/css">
+<script src="website/assets/js/configuration.js"></script>
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<script src="website/assets/js/configuration.js"></script>
 
 </head>
 
