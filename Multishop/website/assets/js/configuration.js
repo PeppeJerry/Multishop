@@ -6,14 +6,14 @@ $(document).ready(function() {
 		e.preventDefault();
 		var db = document.getElementById("database").value;
 		if(!confirm("Are you sure to use [ "+db+" ] as database name?")){
-			break;
+			return;
 		}
 		var data = {
 			"operation":"CHECK_CONNECTION"
-		}
+		};
 		
 		data = $(this).serialize() + "&" + $.param(data);
-		
+		alert(data);
 		$.ajax({
 			type: "POST",
 			dataType: "json",
@@ -22,8 +22,11 @@ $(document).ready(function() {
 			success:function(data){
 				alert(data['result']);
 			},
-			error:function(){
-				$('#Display').text("Error");
+			error: function(jqXHR, textStatus, errorThrown) {
+				alert(jqXHR.status);
+				alert(textStatus);
+				alert(errorThrown);
+				alert(data);
 			}
 		});
 	});

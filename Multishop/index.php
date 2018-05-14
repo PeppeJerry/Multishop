@@ -7,9 +7,10 @@
 <!-- JQuery -->
 <script src="website/assets/js/jquery.js"></script>
 
-<link rel="icon" href="website/assets/img/favicon.png" type="image/png" sizes="16x16">
+<link rel="icon" href="website/assets/img/config.png" type="image/png" sizes="16x16">
 <link rel="stylesheet" href="website/assets/css/configuration.css" type="text/css">
 <script src="website/assets/js/configuration.js"></script>
+<script src="website/assets/js/support_function.js"></script>
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -17,11 +18,12 @@
 </head>
 
 <body>
-<div class="container"> 
+<div class="box"> 
 
-<div id="Display"></div>
+<div class="container" ><h1 id="Display"></h1></div>
 
-  <form id="settings" class="container" action="configuration/add_new_db.php" method="POST">
+	<input hidden type="text" value="CHECK_CONNECTION"/>
+  <form id="settings" class="container" action="/configuration/add_new_db.php" method="POST">
     <h3>Database configuration</h3>
     <h4>Make sure you put the correct setting</h4>
     <fieldset>

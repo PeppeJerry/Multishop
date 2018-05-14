@@ -1,6 +1,6 @@
 <?php
 
-if (is_ajax()) {
+if (true) {
 
 	$report = array(
 		"result" => "Action not found"
@@ -32,7 +32,6 @@ if (is_ajax()) {
 	}
 
 
-	$return["json"] = json_encode($return);
 	echo json_encode($return);
 }
 
@@ -41,7 +40,7 @@ function check($mode){
 	switch($mode){
 		case 0:
 		if(true){
-			mysqli_close($con);
+
 			return(true);
 		}
 		return(false);
@@ -52,4 +51,3 @@ function check($mode){
 function is_ajax() {
 	return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVER['HTTP_X_REQUESTED_WITH']) == 'xmlhttprequest';
 }
-?>
