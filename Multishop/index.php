@@ -1,4 +1,3 @@
-
 <html>
 
 <head>
@@ -18,8 +17,11 @@
 </head>
 
 <body>
-<div class="container">  
-  <form id="settings" action="index.php" method="post">
+<div class="container"> 
+
+<div id="Display"></div>
+
+  <form id="settings" class="container" action="configuration/add_new_db.php" method="POST">
     <h3>Database configuration</h3>
     <h4>Make sure you put the correct setting</h4>
     <fieldset>
