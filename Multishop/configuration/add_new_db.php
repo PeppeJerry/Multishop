@@ -6,9 +6,29 @@ if (is_ajax()) {
 	);
 
 	if(isset($_POST["action"]) && !empty($_POST["action"])){
-		$action = $_POST['action'];
-		switch($action){
+		$action = $_POST;
+		switch($action['action']){
+			
 			case "CREATE_DB":
+				if(check(0)){
+					$con = mysqli_connect('localhost','root','');
+					$result = $con->query('CREATE DATABASE '.$_POST['datab']);
+					mysqli_close($con);
+					$database = fopen("database.php","w");
+					$write = '<?php $db_name = "'.$_POST['datab'].'" ?>';
+					fwrite($database,$write);
+					fclose($database);
+					$return = array(
+						"result" => "Done"
+					);
+					
+				}
+				else{
+					$return = array(
+						"result" =>"Connection aborted"
+					);
+				}
+				
 				break;
 
 			case "CHECK_CONNECTION";
@@ -23,7 +43,7 @@ if (is_ajax()) {
 					);
 				}
 				break;
-
+			
 				default:
 					exit();
 
@@ -38,11 +58,16 @@ if (is_ajax()) {
 function check($mode){
 	switch($mode){
 		case 0:
-		if($con = mysqli_connect('localhost','root','')){
+		try {
+			$con = mysqli_connect('localhost','root','');
+			mysqli_close($con);
 			return(true);
 		}
-		return(false);
+		catch(Excaption $e){
+			return(false);
+		}
 		break;
+		default: return(false);
 	}
 }
 
