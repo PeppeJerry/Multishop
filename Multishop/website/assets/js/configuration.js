@@ -1,6 +1,6 @@
 $(document).ready(function() {
 	
-	//Confirm of the database name
+	//Database creation BETA
 	
 	$("#settings").submit(function(e){
 		e.preventDefault();
@@ -9,24 +9,17 @@ $(document).ready(function() {
 			return;
 		}
 		var data = {
-			"operation":"CHECK_CONNECTION"
+			"action":"CHECK_CONNECTION"
 		};
 		
 		data = $(this).serialize() + "&" + $.param(data);
-		alert(data);
 		$.ajax({
 			type: "POST",
 			dataType: "json",
 			url: "configuration/add_new_db.php",
 			data:data,
 			success:function(data){
-				alert(data['result']);
-			},
-			error: function(jqXHR, textStatus, errorThrown) {
-				alert(jqXHR.status);
-				alert(textStatus);
-				alert(errorThrown);
-				alert(data);
+				$("#Display").html('<div class="container"><h1>'+data['result']+'</h1></div>');
 			}
 		});
 	});

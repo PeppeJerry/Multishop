@@ -1,8 +1,7 @@
 <?php
+if (is_ajax()) {
 
-if (true) {
-
-	$report = array(
+	$return = array(
 		"result" => "Action not found"
 	);
 
@@ -14,12 +13,12 @@ if (true) {
 
 			case "CHECK_CONNECTION";
 				if(check(0)){
-					$report = array(
+					$return = array(
 						"result" => "Connection Stable"
 					);
 				}
 				else{
-					$report = array(
+					$return = array(
 						"result" =>"Connection aborted"
 					);
 				}
@@ -39,8 +38,7 @@ if (true) {
 function check($mode){
 	switch($mode){
 		case 0:
-		if(true){
-
+		if($con = mysqli_connect('localhost','root','')){
 			return(true);
 		}
 		return(false);

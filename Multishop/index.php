@@ -20,10 +20,10 @@
 <body>
 <div class="box"> 
 
-<div class="container" ><h1 id="Display"></h1></div>
+<div id="Display" ></div>
 
 	<input hidden type="text" value="CHECK_CONNECTION"/>
-  <form id="settings" class="container" action="/configuration/add_new_db.php" method="POST">
+  <form id="settings" class="container" action="configuration/add_new_db.php" method="POST">
     <h3>Database configuration</h3>
     <h4>Make sure you put the correct setting</h4>
     <fieldset>
