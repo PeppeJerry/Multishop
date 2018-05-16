@@ -11,23 +11,31 @@ if (is_ajax()) {
 			
 			case "CREATE_DB":
 				if(check(0)){
-					$path = 'mysql:host =localhost';
-					$user = 'root';
-					$pwd = '';
-					$con = new PDO($path,$user,$pwd);
-					$link = $con->prepare('CREATE DATABASE :database');
-					$link->bindParam(':database',$_POST['datab']);
-					$link->execute();
-					unset($con);
-					unset($link);
-					unset($log);
-					$database = fopen("database.php","w");
-					$write = '<?php $db_name = "'.$_POST['datab'].'" ?>';
-					fwrite($database,$write);
-					fclose($database);
-					$return = array(
-						"result" => "Done"
-					);
+					try{
+						/* Creating .php page with variable contained DB name */
+						$database = fopen("database.php","w");
+						$write = '<?php $db_name = "'.$_POST['datab'].'" ?>';
+						fwrite($database,$write);
+						fclose($database);
+						
+						/* PDO -> Creation of the database */
+						$path = 'mysql:host =localhost';
+						$user = 'root';
+						$pwd = '';
+						$con = new PDO($path,$user,$pwd);
+						$link = $con->exec('CREATE DATABASE '.$_POST['datab']);
+						unset($con);
+						unset($link);
+						unset($log);
+						$return = array(
+							"result" => "Done"
+						);
+					}
+					catch(Excaption $e){
+						$return = array(
+							"result" => "Writing permission error"
+						);
+					}
 					
 				}
 				else{
