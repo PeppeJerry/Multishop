@@ -15,14 +15,13 @@ $(document).ready(function() {
 		var l = loading;
 		$("#Display").html('<div class="container" style="text-align:center">'+l+l+l+l+l+l+'</div>');
 		data = $(this).serialize() + "&" + $.param(data);
-		alert(data);
 		$.ajax({
 			type: "POST",
 			dataType: "json",
-			url: "configuration/add_new_db.php",
+			url: "configuration/add_new_db_PDO.php",
 			data:data,
 			success:function(data){
-				alert("ok");
+				alert(data['result']);
 			},
 			error:function(){
 				$("#Display").html('<div class="container"><h1  style="text-align:center;">Connection aborted</h1></div>');
@@ -42,7 +41,7 @@ $(document).ready(function() {
 		$.ajax({
 			type: "POST",
 			dataType: "json",
-			url: "configuration/add_new_db.php",
+			url: "configuration/add_new_db_PDO.php",
 			data:data,
 			success:function(data){
 				$("#Display").html('<div class="container"><h1  style="text-align:center;">'+data['result']+'</h1></div>');
