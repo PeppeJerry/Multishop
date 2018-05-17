@@ -1,0 +1,1 @@
+<?php $db_name = "foo" ?>

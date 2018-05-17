@@ -23,7 +23,7 @@
 
 <div id="Display" ></div>
 
-  <form id="settings" class="container" action="configuration/add_new_db_PDO.php" method="POST">
+  <form id="settings" class="container" method="POST">
     <h3>Database configuration</h3>
     <h4>Make sure you put the correct setting</h4>
     <fieldset>
@@ -31,16 +31,16 @@
     </fieldset>
 	
 	<fieldset>
-      <input placeholder="Admin name" class="chars min_char" name="admin" type="text" required>
+      <input placeholder="Admin name" class="chars" name="admin" type="text" required>
     </fieldset>
 	
 	<fieldset>
-      <input placeholder="Admin password" class="chars min_char" name="pwd" type="password" required>
+      <input placeholder="Admin password" class="password" name="pwd" type="password" required>
     </fieldset>
 	
 	<fieldset>
-      <input placeholder="Confirm password" class="chars min" name="c_pwd" type="password" required>
-	  <div class="help-tip"><p>Remember your admin username and admin password! </p></div>
+      <input placeholder="Confirm password" class="password" name="c_pwd" type="password" required>
+	  <div class="help-tip"><p>Password must be:<br>8 to 20 letter<br>With 1 CAPS and 1 letter<br>With a special char:<br><span style="font-size:15px;">< > ! " ' $ % & / ( ) = # ?</span><br>OPTIONAL<br>You can put also space!</p></div>
     </fieldset>
 	<hr/>
 	<h2 style="text-align:center;">Platform Setting</h2>

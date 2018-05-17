@@ -9,6 +9,11 @@ $(document).ready(function() {
 			e.preventDefault();
 	});
 	
+	$(".password").keypress(function(e){
+		var code = eval(e.which);
+		if(special_char(code))
+			e.preventDefault();
+	});
 });
 
 function nums_chars(code){
@@ -24,4 +29,11 @@ function space_char(code){
 		return false;
 	return true
 
+}
+
+function special_char(code){
+	code = String.fromCharCode(code);
+	if(!code.match(/[A-Za-z0-9<>!"'$%&/()=#?]/g))
+		return true;
+	return false;
 }
