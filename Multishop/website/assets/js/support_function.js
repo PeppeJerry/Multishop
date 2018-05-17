@@ -22,5 +22,6 @@ function space_char(code){
 	
 	if(code == 32)
 		return false;
+	return true
 
 }
