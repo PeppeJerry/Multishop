@@ -1,11 +1,26 @@
 $(document).ready(function() {
 	
-	//Just Pressing A to Z, a to z, 0 to 9
+	// Just Pressing A to Z, a to z, 0 to 9
 	
 	$(".chars").keypress(function(e){
-		var c = String.fromCharCode(e.which);
-		if(!c.match(/[A-Za-z0-9]/g))
+		
+		var code = eval(e.which);
+		if(nums_chars(code))
 			e.preventDefault();
 	});
 	
 });
+
+function nums_chars(code){
+	code = String.fromCharCode(code);
+	if(!code.match(/[A-Za-z0-9]/g))
+		return true;
+	return false;
+}
+
+function space_char(code){
+	
+	if(code == 32)
+		return false;
+
+}

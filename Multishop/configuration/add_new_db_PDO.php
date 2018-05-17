@@ -14,7 +14,7 @@ if (is_ajax()) {
 					try{
 						/* Creating .php page with variable contained DB name */
 						$database = fopen("database.php","w");
-						$write = '<?php $db_name = "'.$_POST['datab'].'" ?>';
+						$write = '<?php $db_name = "'.$_POST['datab'].'"; ?>';
 						fwrite($database,$write);
 						fclose($database);
 						
