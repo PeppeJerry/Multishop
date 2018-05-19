@@ -20,15 +20,9 @@ $(document).ready(function() {
 			success:function(data){
 				alert(data['result']);
 			},
-			error:
-			function(){
+			error:function(){
 				$("#Display").html('<div class="container"><h1  style="text-align:center;">Submit goes wrong</h1></div>');
 			}
-				/*	Remove comment for show errors from AJAX
-					function(ts) { var x = $('body')[0];
-					x.html(ts.responseText); 
-					x.css('background','white');}
-				*/
 		});
 	});
 	
@@ -54,3 +48,4 @@ $(document).ready(function() {
 	
 	
 });
+

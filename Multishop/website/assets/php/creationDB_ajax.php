@@ -3,31 +3,34 @@
 require 'is_ajax.php';
 
 if(is_ajax()){
-	require 'secure_pwd.php';
+	require 'secure_form.php';
+	
 	$return['result'] = "Database is created!";
-	$control = true;
 	
-	/* Password and Confirm_Password */
-	$pwd = $_POST['pwd'];
-	$c_pwd = $_POST['c_pwd'];
-	
-	/* Are this the same password?*/
-	if($pwd != $c_pwd){
-		$return['result'] = "Password dismatch";
-		$control = false;
+	/* Password, Confirm_Password and User*/
+	try{
+		$user = $_POST['admin'];
+		$pwd = $_POST['pwd'];
+		$c_pwd = $_POST['c_pwd'];
 	}
-	
-	/* Is the password strong? */
-	if(secure_password($pwd)){
-		$return['result'] = "Password is wrong";
+	catch(Exception $e){
+		$return['result'] = "Missing parameters";
 		echo json_encode($return);
 		exit();
 	}
 	
+	/* Check secure_form.php for more information*/
+	$form = secure_form($user,$pwd,$c_pwd);
+	if(strcmp($form,"Good")){
+		$return['result'] = $form;
+		echo json_encode($return);
+		exit();
+	}
+	require 'DB_Structure.php';
 	try{
 		/* Save database name */
 		$database = fopen("database.php","w");
-		$write = '<?php $db_name = "'.$_POST['datab'].'" ?>';
+		$write = '<?php $db_name = "'.$_POST['datab'].'"; ?>';
 		fwrite($database,$write);
 		fclose($database);
 	
@@ -39,6 +42,9 @@ if(is_ajax()){
 		$link = $con->exec('CREATE DATABASE '.$_POST['datab']);
 		unset($con);
 		unset($link);
+		
+		/* Check DB_Structure.php for more information */
+		Creation_DB($_POST['datab']);
 	}
 	catch(Exception $e){
 			$return['result'] = "Permission error";
