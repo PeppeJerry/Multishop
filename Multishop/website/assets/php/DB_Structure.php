@@ -47,7 +47,7 @@ CREATE TABLE users(
 );
 
 CREATE TABLE settings(
-	id SMALLINT AUTO_INCREMENT,
+	id SMALLINT,
 	price BOOLEAN default false,
 	stockist BOOLEAN default false,
 	stock BOOLEAN default false,
