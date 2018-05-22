@@ -40,7 +40,7 @@
 	
 	<fieldset>
       <input placeholder="Confirm password" class="password" name="c_pwd" type="password" required>
-	  <div class="help-tip"><p>Database must be:<br>6 to 20 letters or numbers<br>No other chars are allowed!<br><br>Admin must be:<br>8 to 20 letters <br>Min 1 number<br>With 1 CAPS and 1 letter<br>No other chars are allowed!<br><br>Password must be:<br>8 to 30 letters<br>With 1 CAPS and 1 letter<br>With a special char:<br><span style="font-size:15px;">< > ! " ' $ % & / ( ) = # ?</span><br>OPTIONAL<br>You can put also space!</p></div>
+	  <div class="help-tip"><p>Database must be:<br>6 to 15 letters or numbers<br>No other chars are allowed!<br><br>Admin must be:<br>8 to 20 letters <br>Numbers are OPTIONAL<br>With 1 CAPS and 1 letter<br>No other chars are allowed!<br><br>Password must be:<br>10 to 30 letters<br>With 1 CAPS and 1 letter<br>With a special char:<br><span style="font-size:15px;">< > ! " ' $ % & / ( ) = # ?</span><br>OPTIONAL<br>You can put also space!</p></div>
     </fieldset>
 	<hr/>
 	<h2 style="text-align:center;">Platform Setting</h2>
