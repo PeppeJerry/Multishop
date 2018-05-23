@@ -46,9 +46,9 @@
 	<h2 style="text-align:center;">Platform Setting</h2>
 	<fieldset>
 	<hr/>
-	<h4>Product with price<input type="checkbox" name="price" value="1"/></h4><hr/>
-	<h4>Stock information<input type="checkbox" name="stock" value="1"/></h4><hr/>
-	<h4>Stockist information<input type="checkbox" name="stockl" value="1"/></h4><hr/>
+	<h4>Product with price<input type="checkbox" name="price" value="true"/></h4><hr/>
+	<h4>Stock information<input type="checkbox" name="stock" value="true"/></h4><hr/>
+	<h4>Stockist information<input type="checkbox" name="stockist" value="true"/></h4><hr/>
 	</fieldset>
 	  <button name="check" type="button" id="connection">Connection</button>
       <button name="submit" type="submit" style="visibility: hidden;" id="settings-submit">Submit</button>

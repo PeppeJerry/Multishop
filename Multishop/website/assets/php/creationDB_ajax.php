@@ -23,6 +23,20 @@ if(is_ajax()){
 		exit();
 	}
 	
+	$price = $stock = $stockist = 0;
+	if(isset($_POST['price']))
+		if($_POST['price'])
+			$price = 1;
+		
+	if(isset($_POST['stock']))
+		if($_POST['stock'])
+			$stock = 1;
+		
+	if(isset($_POST['stockist']))
+		if($_POST['stockist'])
+			$stockist = 1;
+	
+	
 	/* Check secure_db.php for more information */
 	
 	if(secure_db($datab)){
@@ -78,7 +92,7 @@ if(is_ajax()){
 	
 	try{
 		require 'is_created.php';
-		Post_Creation($datab,$creation_a,$pwd);
+		Post_Creation($datab,$creation_a,$pwd,$price,$stockist,$stock);
 	}
 	catch(Exception $e){
 		$return['result'] = "Admin and Levels didn't load";
