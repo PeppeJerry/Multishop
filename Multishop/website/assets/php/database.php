@@ -1,1 +1,1 @@
-<?php $db_name = "aaaaaa"; ?>
+<?php $db_name = "foo123"; ?>

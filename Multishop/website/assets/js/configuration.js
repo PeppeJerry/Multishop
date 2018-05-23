@@ -11,16 +11,18 @@ $(document).ready(function() {
 		var l = loading;
 		$("#Display").html('<div class="container" style="text-align:center">'+l+l+l+l+l+l+'</div>');
 		data = $(this).serialize();
-		alert(data);
 		$.ajax({
 			type: "POST",
 			dataType: "json",
 			url: "website/assets/php/creationDB_ajax.php",
 			data:data,
 			success:function(data){
-				alert(data['result']);
+				if(data['Good'])
+					$("#settings").remove();
+				$("#Display").html('<div class="container"><h1  style="text-align:center;">'+data['result']+'</h1></div>');
 			},
 			error:function(){
+				
 				$("#Display").html('<div class="container"><h1  style="text-align:center;">Submit goes wrong</h1></div>');
 			}
 		});

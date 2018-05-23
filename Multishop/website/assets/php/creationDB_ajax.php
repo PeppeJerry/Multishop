@@ -7,10 +7,12 @@ if(is_ajax()){
 	require 'secure_db.php';
 	
 	$return['result'] = "Database is created!";
+	$return['Good'] = false;
 	
 	/* Password, Confirm_Password and User*/
 	try{
 		$user = $_POST['admin'];
+		$creation_a = $user;
 		$pwd = $_POST['pwd'];
 		$c_pwd = $_POST['c_pwd'];
 		$datab = $_POST['datab'];
@@ -54,13 +56,36 @@ if(is_ajax()){
 		unset($link);
 		
 		/* Check DB_Structure.php for more information */
-		Creation_DB($datab);
+		try{
+			Creation_DB($datab);
+			$Create = fopen("Created.php","w");
+			$write = '<?php $Creation = "Done"; ?>';
+			fwrite($Create,$write);
+			fclose($Create);
+		}
+		catch(Exception $e){
+			$return['result'] = "Structure didn't load";
+			echo json_encode($return);
+			exit();
+		}
 		
 	}
 	catch(Exception $e){
 			$return['result'] = "Permission error";
+			echo json_encode($return);
+			exit();
 	}
 	
+	try{
+		require 'is_created.php';
+		Post_Creation($datab,$creation_a,$pwd);
+	}
+	catch(Exception $e){
+		$return['result'] = "Admin and Levels didn't load";
+		echo json_encode($return);
+		exit();
+	}
 	
+	$return['Good'] = true;
 	echo json_encode($return);
 }
