@@ -28,6 +28,36 @@ body {
   position: relative;
 }
 
+#load{
+	text-decoration:none;
+}
+
+#load input{
+	
+	border:none;
+	border-radius:3px;
+	background:#333333;
+	color:white;
+	font-size:20px;
+	padding:20px;
+	display:block;
+	margin:0 auto;
+	border: 1px solid #ccc;
+	cursor: pointer;
+	
+}
+
+#load input:hover{
+	-webkit-transition: border-color 0.3s ease-in-out;
+	-moz-transition: border-color 0.3s ease-in-out;
+	transition: border-color 0.3s ease-in-out;
+	-webkit-transition: background 0.3s ease-in-out;
+	-moz-transition: background 0.3s ease-in-out;
+	transition: background 0.3s ease-in-out;
+	background:#000000;
+	border: 1px solid #aaa;
+}
+
 .container input[type="text"],
 .container input[type="password"],
 .container input[type="email"],

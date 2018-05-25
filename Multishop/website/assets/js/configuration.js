@@ -17,13 +17,15 @@ $(document).ready(function() {
 			url: "website/assets/php/creationDB_ajax.php",
 			data:data,
 			success:function(data){
-				if(data['Good'])
-					$("#settings").remove();
-				$("#Display").html('<div class="container"><h1  style="text-align:center;">'+data['result']+'</h1></div>');
+				if(data['Good']){
+					$("#settings").empty();
+					$("#settings").html('<a id="load" href="./website/login.php"><input type="button" value="Login Page"/></a>')
+				}
+				$("#Display").html('<div class="container"><h1 style="text-align:center;">'+data['result']+'</h1></div>');
 			},
 			error:function(){
 				
-				$("#Display").html('<div class="container"><h1  style="text-align:center;">Submit goes wrong</h1></div>');
+				$("#Display").html('<div class="container"><h1 style="text-align:center;">Submit goes wrong</h1></div>');
 			}
 		});
 	});

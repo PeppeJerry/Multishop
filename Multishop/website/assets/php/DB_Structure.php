@@ -9,6 +9,8 @@ $Structure ="
 CREATE TABLE products(
 	id SMALLINT AUTO_INCREMENT,
 	name VARCHAR(40) NOT NULL,
+	url_img VARCHAR(2083),
+	quantity int(6),
 	description TEXT,
 	price DECIMAL (5,2),
 	enable BOOLEAN default true,
@@ -43,6 +45,20 @@ CREATE TABLE users(
 	a_admin BOOLEAN default false,
 	priority SMALLINT references priorities(lvl),
 	enable BOOLEAN default true,
+	PRIMARY KEY(id)
+);
+
+CREATE TABLE stockists(
+	p_iva INT(11),
+	name VARCHAR(30) NOT NULL,
+	CAP int(5) default 0
+);
+
+CREATE TABLE prod_transictions(
+	product SMALLINT references products(id),
+	stockist INT(11) references stockist(p_iva),
+	quantity INT(6),
+	id SMALLINT AUTO_INCREMENT,
 	PRIMARY KEY(id)
 );
 

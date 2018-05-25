@@ -23,9 +23,15 @@ function Post_Creation($datab,$admin,$pwd,$price,$stockist,$stock){
 	"
 	INSERT INTO settings(id,price,stockist,stock) VALUE ('1', ".$s1.", ".$s2.", ".$s3.")
 	";
+	
+	$Default =
+	"
+	INSERT INTO stockists(p_iva,name,cap) VALUE (0,'Unknown',0)
+	";
 	$link = $con->exec($Levels);
 	$link = $con->exec($Admin);
 	$link = $con->exec($Setting);
+	$link = $con->exec($Default);
 	unset($con);
 	unset($link);
 	
