@@ -26,7 +26,7 @@ function Post_Creation($datab,$admin,$pwd,$price,$stockist,$stock){
 	
 	$Default =
 	"
-	INSERT INTO stockists(p_iva,name,cap) VALUE (0,'Unknown',0)
+	INSERT INTO stockists(p_iva,name,cap) VALUE (0,'Unknown',0), (1,'Customer',0)
 	";
 	$link = $con->exec($Levels);
 	$link = $con->exec($Admin);

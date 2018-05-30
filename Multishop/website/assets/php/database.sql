@@ -1,6 +1,6 @@
 CREATE TABLE products(
 	id SMALLINT AUTO_INCREMENT,
-	name VARCHAR(40) NOT NULL,
+	name VARCHAR(40) NOT NULL UNIQUE,
 	quantity int(6),
 	description TEXT,
 	price DECIMAL (5,2),

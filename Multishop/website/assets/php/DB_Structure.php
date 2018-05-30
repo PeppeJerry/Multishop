@@ -8,7 +8,7 @@ $Structure ="
 
 CREATE TABLE products(
 	id SMALLINT AUTO_INCREMENT,
-	name VARCHAR(40) NOT NULL,
+	name VARCHAR(40) NOT NULL UNIQUE,
 	url_img VARCHAR(2083),
 	quantity int(6),
 	description TEXT,
