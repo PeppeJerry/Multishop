@@ -1,6 +1,15 @@
 <?php
+
+try{
+	require "assets/php/Created.php";
+	require "assets/php/database.php";
+}
+catch(Exception $e){
+	header("Location: ../");
+}
+
 session_start();
-require "assets/php/database.php";
+
 ?>
 <html class="no-js">
 <head>

@@ -4,9 +4,10 @@
 
 <?php
 	try{
-		require 'website/assets/php/Created.php';
-		header("Location: website");
-		exit();
+		if(file_exists("website/assets/php/Created.php")){
+		header("Location: website/");
+		exit();	
+		}
 	}
 	catch(Exception $e){
 		echo "<title>Configuration</title>";

@@ -12,7 +12,7 @@ catch(Exception $e){
 
 
 if(secure_user($user)){
-	header('Location: ./login.php?error=Login+failed1');
+	header('Location: ./login.php?error=Login+failed');
 	exit();
 }
 $pwd = hash("sha512",md5($pwd).$pwd);

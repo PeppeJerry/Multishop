@@ -2,6 +2,13 @@
 
 require 'is_ajax.php';
 
+if(file_exists("Created.php")){
+	$return['result'] = "Database is already created!";
+	$return['Good'] = false;
+	echo json_encode($return);
+	exit();
+}
+
 if(is_ajax()){
 	require 'secure_form.php';
 	require 'secure_db.php';

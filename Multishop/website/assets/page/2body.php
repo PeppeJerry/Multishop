@@ -5,6 +5,7 @@
 		<div class="cd-search is-hidden">
 			<form action="#0">
 				<input type="search" placeholder="Search product...">
+				<input name="page" value="1" style="display:none;">
 			</form>
 		</div>
 
@@ -16,9 +17,9 @@
 					<a href="#0">
 					<?php
 					if(isset($_SESSION['user']))
-						 echo '<img src="assets/img/logged.png" alt="avatar">Admin';
+						 echo '<img src="assets/img/logged.png" alt="Admin">Admin';
 					 else
-						 echo '<img src="assets/img/guest.png" alt="avatar">Guest';
+						 echo '<img src="assets/img/guest.png" alt="Guest">Guest';
 					 
 						?>
 					</a>
@@ -27,7 +28,7 @@
 					<?php
 						if(isset($_SESSION['user']))
 						echo '
-						<li><a href="#0">My Account</a></li>
+						<li><a href="myaccount.php">My Account</a></li>
 						<li><a href="assets/php/logout.php">Logout</a></li>';
 						else
 							echo '<li><a href="login.php">Login</a></li>';
@@ -46,8 +47,8 @@
 					<a href="#0">Product</a>
 					
 					<ul>
-						<li><a href="#0">Categories</a></li>
-						<li><a href="#0">A to Z</a></li>
+						<li><a href="index.php?type=category&page=1">Categories</a></li>
+						<li><a href="index.php?type=sorted&page=1">A to Z</a></li>
 					</ul>
 				</li>
 
