@@ -2,16 +2,17 @@
 require './assets/php/secure_user.php';
 
 try{
-	$user = $_POST['userid'];
-	$pwd  = $_POST['password'];
+	$user = $_POST['admin'];
+	$pwd  = $_POST['pwd'];
 }
 catch(Exception $e){
 	header('Location: ./login.php?error=Missing+param');
 	exit();
 }
 
+
 if(secure_user($user)){
-	header('Location: ./login.php?error=Login+failed');
+	header('Location: ./login.php?error=Login+failed1');
 	exit();
 }
 $pwd = hash("sha512",md5($pwd).$pwd);

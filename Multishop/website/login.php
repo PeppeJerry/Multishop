@@ -1,12 +1,9 @@
-<html>
-
-<head>
-
-<title>Login</title>
-
-<!-- JQuery -->
+<?php
+include "assets/page/1head.php";
+include "assets/page/2body.php";
+?>
+<style>body{background:white}</style>
 <script src="assets/js/jquery.js"></script>
-
 <link rel="icon" href="assets/img/config.png" type="image/png" sizes="16x16">
 <link rel="stylesheet" href="assets/css/configuration.css" type="text/css">
 <link rel="stylesheet" href="assets/css/general.css" type="text/css">
@@ -15,14 +12,12 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-</head>
 
-<body>
 <div class="box" style="margin-top:100px;"> 
 
 <div id="Display" ></div>
 
-  <form id="settings" class="container" method="POST">
+  <form id="settings" class="container" action="check_login.php" method="POST">
     <h3 style="text-align:center">Login</h3>
     <h4 style="text-align:center">Correct credentials for enter obviously</h4>
 	
@@ -38,6 +33,6 @@
     </fieldset>
 	</form>
 </div>
-</body>
-
-</html>
+<?php
+include "assets/page/4end.php";
+?>

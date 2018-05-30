@@ -1,18 +1,7 @@
 <?php
-session_start();
-require "./assets/php/check_session.php";
+include "assets/page/1head.php";
+include "assets/page/2body.php";
 ?>
-
-<html>
-
-<head>
-</head>
-
-<body>
 <?php
-if(isset($_SESSION))
-	echo $_SESSION['user'];
+include "assets/page/4end.php";
 ?>
-</body>
-
-</html>
