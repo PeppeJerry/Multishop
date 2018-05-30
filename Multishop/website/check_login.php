@@ -53,5 +53,4 @@ $_SESSION['a_p']=$result['a_product'];
 $_SESSION['a_a']=$result['a_admin'];
 $_SESSION['check'] = md5($pwd);
 
-
 header('Location: ./index.php');

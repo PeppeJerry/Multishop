@@ -2,7 +2,17 @@
 
 <head>
 
-<title>Configuration</title>
+<?php
+	try{
+		require 'website/assets/php/Created.php';
+		header("Location: website");
+		exit();
+	}
+	catch(Exception $e){
+		echo "<title>Configuration</title>";
+	}
+?>
+
 
 <!-- JQuery -->
 <script src="website/assets/js/jquery.js"></script>

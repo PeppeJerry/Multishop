@@ -1,6 +1,8 @@
 <?php
 include "assets/page/1head.php";
 include "assets/page/2body.php";
+if(isset($_SESSION['user']))
+	header("Location: index.php")
 ?>
 <style>body{background:white}</style>
 <script src="assets/js/jquery.js"></script>
