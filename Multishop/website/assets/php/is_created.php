@@ -16,7 +16,7 @@ function Post_Creation($datab,$admin,$pwd,$price,$stockist,$stock){
 	
 	$Admin =
 	"
-	INSERT INTO users(userid,pwd,a_product,a_admin,priority) VALUE('".$admin."','".hash('sha512',$pwd)."',true,true,0)
+	INSERT INTO users(userid,pwd,a_product,a_admin,priority) VALUE('".$admin."','".hash('sha512',md5($pwd).$pwd)."',true,true,0)
 	";
 	
 	$Setting =
