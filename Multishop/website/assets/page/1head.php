@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 try{
 	if(!(file_exists('assets/php/Created.php') AND file_exists('assets/php/database.php'))){
 		header('Location: ../');
@@ -10,12 +10,12 @@ try{
 	if(file_exists("assets/php/favicon.php")){
 		require "assets/php/setting.php";
 	}
+	require "assets/php/check_session.php";
 }
 catch(Exception $e){
 	header("Location: ../");
 }
 
-session_start();
 
 ?>
 <html class="no-js">

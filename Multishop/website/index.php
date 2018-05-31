@@ -9,7 +9,6 @@ if(isset($_GET['type'])){
 	switch (strtolower($_GET['type'])){
 		case 'sorted':
 		try{
-			require "assets/php/get_con.php";
 			require "assets/php/get_setting.php";
 			$setting = get_setting();
 			$con = get_con();
@@ -77,6 +76,13 @@ if(isset($_GET['type'])){
 				echo "<a href='index.php?type=sorted&page=".intval($page-1)."' style='float:left;color:black'>Back</a>";
 			if ($i == 10){
 				echo "<a href='index.php?type=sorted&page=".intval($page+1)."' style='float:right;color:black'>Next</a>";
+			}
+			if($i == 0){
+				echo "<div class='product'>
+				<span class='prod_title' style='font-size:25px'>Nothing to se here</span>
+				<img alert='nothing' src='./assets/img/no.png'>
+				
+				</div>";
 			}
 			echo "</div>";
 		}

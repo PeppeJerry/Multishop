@@ -1,7 +1,7 @@
 <?php
 
 if(isset($_SESSION['user'])){
-	require './assets/php/get_con.php';
+	require "get_con.php";
 	$con = get_con();
 	if(!$con){
 		header('Location: ./index.php?error=Connection+aborted');
@@ -38,5 +38,3 @@ if(isset($_SESSION['user'])){
 	unset($con);
 	unset($link);
 }
-else
-	exit();
