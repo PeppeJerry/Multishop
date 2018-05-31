@@ -1,19 +1,19 @@
 <?php
 include "assets/page/1head.php";
-include "assets/page/2body.php";
-if(isset($_SESSION['user']))
-	header("Location: index.php")
+if(isset($_SESSION['user'])){
+	header("Location: ./");
+	exit();
+}
 ?>
-<style>body{background:white}</style>
 <script src="assets/js/jquery.js"></script>
 <link rel="icon" href="assets/img/config.png" type="image/png" sizes="16x16">
 <link rel="stylesheet" href="assets/css/configuration.css" type="text/css">
 <link rel="stylesheet" href="assets/css/general.css" type="text/css">
 <script src="assets/js/support_function.js"></script>
+<?php
+include "assets/page/2body.php";
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-
+?>
 
 <div class="box" style="margin-top:100px;"> 
 

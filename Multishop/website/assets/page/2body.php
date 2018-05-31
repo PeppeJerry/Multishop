@@ -1,3 +1,4 @@
+</head>
 <body>
 	<header class="cd-main-header">
 		<a href="#0" class="cd-logo"></a>
@@ -42,13 +43,16 @@
 	<main class="cd-main-content">
 		<nav class="cd-side-nav">
 			<ul>
-				<li class="cd-label">Guest Pannel</li>
+				<li class="cd-label">Operation</li>
 				<li class="has-children">
 					<a href="#0">Product</a>
 					
 					<ul>
 						<li><a href="index.php?type=category&page=1">Categories</a></li>
 						<li><a href="index.php?type=sorted&page=1">A to Z</a></li>
+						<?php if(isset($_SESSION['a_p']) AND $_SESSION['a_p'])
+							echo "<li><a href='newproduct.php'>Add product</a></li>"
+							?>
 					</ul>
 				</li>
 

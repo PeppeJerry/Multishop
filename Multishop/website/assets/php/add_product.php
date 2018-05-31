@@ -4,11 +4,11 @@ function add_product($info){
 	require 'get_setting.php';
 	
 	if(!isset($info['name']))
-		return "Name problem";
+		return "Name+problem";
 	$setting = get_setting();
 	
 	if(!$setting['OK'])
-		return "Get_Setting problem";
+		return "Get_Setting+problem";
 	
 	$con = $setting['con'];
 	unset($setting['con']);
@@ -21,11 +21,11 @@ function add_product($info){
 		if($link->rowCount()>0){
 			unset($con);
 			unset($link);
-			return "Name already used";
+			return "Name+already+used";
 		}
 	}
 	catch(Exception $e){
-		return "Problem to check the name";
+		return "Problem+to+check+the+name";
 	}
 	
 	if(!$setting['price'] OR !is_numeric($info['price']))
@@ -42,11 +42,11 @@ function add_product($info){
 			if($link->rowCount()==0){
 				unset($link);
 				unset($con);
-				return "Stockist not exist";
+				return "Stockist+not+exist";
 			}
 		}
 		catch(Exception $e){
-			return "Problem to check stockist";
+			return "Problem+to+check+stockist";
 		}
 	}
 	
@@ -75,13 +75,14 @@ function add_product($info){
 		$link->execute();
 	}
 	catch(Exception $e){
-		return "Insert product failed";
+		return "Insert+product+failed";
 	}
 	
 	unset($link);
-	unset($con);
-	if(!$stock)
-		return "Good, you add a new product!";
+	if(!$stock){
+		unset($con);
+		return "Good+you+add+a+new+product";
+	}
 		
 	$sub_query = "
 		(SELECT id FROM products WHERE name = :name)
@@ -98,10 +99,10 @@ function add_product($info){
 		$link->execute();
 	}
 	catch(Exception $e){
-		return "Problem with product transictions";
+		return "Problem+with+product+transictions";
 	}
 	unset($link);
 	unset($con);
-	return "Good, you add a new product!";
+	return "Good+you+add+a+new+product";
 	
 }

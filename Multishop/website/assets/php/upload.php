@@ -19,7 +19,7 @@ require "check_image.php";
 	$userfile_name = md5($_FILES['userfile']['name'].md5_file($_FILES['userfile']['tmp_name'])).".".$ext;
 
 	if(file_exists($uploaddir.$userfile_name)){
-		return false;
+		return $userfile_name;
 	}
 	
 	if (move_uploaded_file($userfile_tmp, $uploaddir . $userfile_name))
