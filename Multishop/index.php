@@ -61,9 +61,10 @@
 	<h4>Stock information<input type="checkbox" name="stock" value="true"/></h4><hr/>
 	<h4>Stockist information<input type="checkbox" name="stockist" value="true"/></h4><hr/>
 	</fieldset>
-	  <button name="check" type="button" id="connection">Connection</button>
-      <button name="submit" type="submit" style="visibility: hidden;" id="settings-submit">Submit</button>
-	  
+	<div id="ToChange">
+	  <button name="check" type="submit" id="connection">Connection</button>
+      <button name="submit" type="button" style="visibility: hidden;" id="settings-submit">Submit</button>
+	  </div>
     </fieldset>
 	</form>
 </div>

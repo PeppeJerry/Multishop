@@ -6,6 +6,7 @@
 		<div class="cd-search is-hidden">
 			<form action="#0">
 				<input type="search" placeholder="Search product...">
+				<input type="submit" hidden>
 				<input name="page" value="1" style="display:none;">
 			</form>
 		</div>
@@ -48,10 +49,13 @@
 					<a href="#0">Product</a>
 					
 					<ul>
-						<li><a href="index.php?type=category&page=1">Categories</a></li>
-						<li><a href="index.php?type=sorted&page=1">A to Z</a></li>
+						<li><a href="category.php&category&page=1">Categories</a></li>
+						<li><a href="sorted.php?page=1">A to Z</a></li>
 						<?php if(isset($_SESSION['a_p']) AND $_SESSION['a_p'])
-							echo "<li><a href='newproduct.php'>Add product</a></li>"
+							echo "
+						<li><a href='newproduct.php'>Add product</a></li>
+						<li><a href='categoryproduct.php'>Category Product</a></li>
+						";
 							?>
 					</ul>
 				</li>

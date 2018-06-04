@@ -14,6 +14,17 @@ $(document).ready(function() {
 		if(special_char(code))
 			e.preventDefault();
 	});
+	
+	$("input").keypress(function(event){
+		if (event.which == 13) {
+			event.preventDefault();
+			var x = $(this).closest("form");
+			x = x.find(":submit");
+			x.trigger( "click" );
+		}
+	
+	});
+	
 });
 
 function nums_chars(code){
@@ -48,3 +59,5 @@ function sleep(milliseconds) {
     }
   }
 }
+
+

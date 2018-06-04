@@ -42,7 +42,11 @@ $(document).ready(function() {
 			success:function(data){
 				$("#Display").html('<div class="container"><h1  style="text-align:center;">'+data['result']+'</h1></div>');
 				if(data['connect'])
-					$("#settings-submit").css("visibility","visible");
+					if(data['connect']){
+					
+					$("#ToChange").html('<button name="check" type="button" id="connection">Connection</button><button name="submit" type="submit" id="settings-submit">Submit</button>');
+					
+				}
 			},
 			error:function(){
 				$("#Display").html('<div class="container"><h1  style="text-align:center;">Error during connection</h1></div>');
