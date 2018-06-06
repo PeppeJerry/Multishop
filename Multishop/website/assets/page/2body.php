@@ -9,7 +9,7 @@
 	</style>
 
 	<header class="cd-main-header">
-		<a href="#0" class="cd-logo"></a>
+		<a style="margin-top:5px;" href="./" class="cd-logo"><img style="width:90px;" src="assets/img/logo.png" alt="Logo"></a>
 		
 		<div class="cd-search is-hidden">
 			<form action="#0">
@@ -19,7 +19,7 @@
 			</form>
 		</div>
 
-		<a href="#0" class="cd-nav-trigger">Menu<span></span></a>
+		<a href="#0" class="cd-nav-trigger"><span></span></a>
 
 		<nav class="cd-nav">
 			<ul class="cd-top-nav">

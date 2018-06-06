@@ -12,6 +12,7 @@
 	catch(Exception $e){
 		echo "<title>Configuration</title>";
 	}
+	
 ?>
 
 
