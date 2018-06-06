@@ -32,7 +32,7 @@ function add_product($info){
 		$info['price'] = NULL;
 	
 	
-	if(!$setting['stockist'] OR !is_numeric($info['stockist']))
+	if(!$setting['stockist'] OR !isset($info['stockist']) OR!is_numeric($info['stockist']))
 		$info['stockist'] = 0;
 	else{
 		$query ="SELECT p_iva FROM stockists WHERE p_iva = ".$info['stockist'];
@@ -89,12 +89,13 @@ function add_product($info){
 		(SELECT id FROM products WHERE name = :name)
 	";
 	$query = "
-		INSERT INTO prod_transictions(product,stockist,quantity) VALUE (".$sub_query.",:stockl,:quant)
+		INSERT INTO prod_transictions(product,stockist,quantity,action) VALUE (".$sub_query.",:stockl,:quant,:action)
 	";
 	
 	try{
 		$link = $con->prepare($query);
 		$link->bindParam(":name",$info['name']);
+		$link->bindParam(":action",$info['action']);
 		$link->bindParam(":quant",$info['quantity']);
 		$link->bindParam(":stockl",$info['stockist']);
 		$link->execute();

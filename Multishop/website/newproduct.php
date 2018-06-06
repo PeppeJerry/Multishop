@@ -27,7 +27,7 @@ if(isset($_GET['type'])){
     </div>
 	
 	<div class="form-group">
-		<input type="number" class="form-control" placeholder="Price (Optional)" name="price"/>
+		<input type="number" step=".01" class="form-control" placeholder="Price (Optional)" name="price"/>
     </div>
 	<?php 
 	if($setting['stockist']){
@@ -51,7 +51,7 @@ if(isset($_GET['type'])){
 	
 	<input type="hidden" name="MAX_FILE_SIZE" value="30000000">
   Upload IMG: <input name="userfile" type="file"></br>
-  <input type="submit" value="Carica">
+  <input type="submit" value="Load">
 	
   </form>
 </div>

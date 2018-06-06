@@ -62,7 +62,6 @@
 						<?php if(isset($_SESSION['a_p']) AND $_SESSION['a_p'])
 							echo "
 						<li><a href='newproduct.php'>Add product</a></li>
-						<li><a href='categoryproduct.php'>Category Product</a></li>
 						";
 							?>
 					</ul>

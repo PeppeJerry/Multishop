@@ -14,6 +14,7 @@ if(isset($_POST) AND $_SESSION['a_p']){
 	if(is_string($image)){
 		$_POST['url'] = "./assets/img/".$image;
 	}
+	$_POST['action'] = 'Add Product ('.$_SESSION['user'].')';
 	header("Location: ./newproduct.php?type=advice&mex=".add_product($_POST));
 	exit();
 }

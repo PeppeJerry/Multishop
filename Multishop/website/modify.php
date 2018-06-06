@@ -42,19 +42,16 @@ $result = $link->fetch();
 	echo "Name [".$result['name'].']';
 ?>
   <form enctype="multipart/form-data" action="modify_product.php" method="POST">
+  <input name="id" value="<?php echo $_GET['id'];?>" hidden>
+  <input name="name" value="<?php echo $result['name'];?>" hidden>
   <?php
   if(isset($result['url_img']))
 	  echo '<img style="width:200px;margin-bottom:20px;" src="'.$result['url_img'].'">';
   else
 	  echo '<img style="width:200px;margin-bottom:20px;" src="./assets/img/no.png">'
   ?>
-    <div class="form-group">
-	
-      <input type="text" class="form-control" placeholder="Product name" name="name" value="<?php if(isset($result['name'])) echo $result['name']?>" required/>
-    </div>
-	
 	<div class="form-group">
-		<input type="number" class="form-control" value="<?php if(isset($result['price'])) echo $result['price']?>" placeholder="Price (Optional)" name="price"/>
+		<input type="number" step=".01" class="form-control" value="<?php if(isset($result['price'])) echo $result['price']?>" placeholder="Price (Optional)" name="price"/>
     </div>
 	
 	
@@ -64,7 +61,9 @@ $result = $link->fetch();
 	
 	<input type="hidden" name="MAX_FILE_SIZE" value="30000000">
   Upload IMG: <input name="userfile" type="file"></br>
-  <input type="submit" value="Carica">
+  <input name="previous_IMG" value="<?php if(isset($result['url_img'])) echo $result['url_img']; else
+  echo "./assets/img/no.png"?>" hidden>
+  <input type="submit" value="Load">
 	
   </form>
 </div>

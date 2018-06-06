@@ -1,21 +1,16 @@
 <?php
-function Back_to_the_future(){
-	if(file_exists('database.php')){
-		require 'database.php';
-		try{
-			$path = 'mysql:host=localhost;dbname='.$db_name;
-			$con = new PDO($path,'root','');
-			$link = $con->exec('DROP DATABASE '.$db_name);
-			unset($con);
-			unset($link);
-		}
-		catch(Exception $e){
-			$con = 'foo';
-			unset($con);
-		}
-		unlink('database.php');
+
+function delete_product($id){
+	require "get_con.php";
+	$con = get_con();
+	$link = $con->prepare('SELECT COUNT(*) as num FROM products WHERE id = '.$id);
+	$link->execute();
+	$result = $link->fetch();
+	$num = $result['num'];
+	if($num != 1){
+		return false;
 	}
-	if(file_exists('Created.php'))
-		unlink('Created.php');
+	$link = $con->prepare('DELETE FROM products WHERE id = '.$id);
+	$link->execute();
+	return true;
 }
-Back_to_the_future();

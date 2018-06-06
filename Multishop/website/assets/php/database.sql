@@ -1,15 +1,3 @@
-CREATE TABLE products(
-	id SMALLINT AUTO_INCREMENT,
-	name VARCHAR(40) NOT NULL UNIQUE,
-	quantity int(6),
-	description TEXT,
-	price DECIMAL (5,2),
-	url_img VARCHAR(2083) default './assets/img/no.png',
-	added TIMESTAMP defalt now(),
-	enable BOOLEAN default true,
-	PRIMARY KEY (id)
-);
-
 CREATE TABLE categories(
 	id SMALLINT AUTO_INCREMENT,
 	name VARCHAR(40) NOT NULL,
@@ -17,10 +5,16 @@ CREATE TABLE categories(
 	PRIMARY KEY (id)
 );
 
-CREATE TABLE classifications(
+CREATE TABLE products(
 	id SMALLINT AUTO_INCREMENT,
-	product SMALLINT,
-	category SMALLINT,
+	name VARCHAR(40) NOT NULL UNIQUE,
+	quantity int(6),
+	description TEXT,
+	price DECIMAL (5,2),
+	url_img VARCHAR(2083) default './assets/img/no.png',
+	added TIMESTAMP default NOW(),
+	enable BOOLEAN default true,
+	category SMALLINT references categories(id),
 	PRIMARY KEY (id)
 );
 
@@ -51,6 +45,8 @@ CREATE TABLE prod_transictions(
 	product SMALLINT references products(id),
 	stockist INT(11) references stockist(p_iva),
 	quantity INT(6),
+	action text,
+	time_action TIMESTAMP default NOW(),
 	id SMALLINT AUTO_INCREMENT,
 	PRIMARY KEY(id)
 );

@@ -16,7 +16,7 @@ require "check_image.php";
 	if(!is_image($userfile_tmp))
 		return false;
 
-	$userfile_name = md5($_FILES['userfile']['name'].md5_file($_FILES['userfile']['tmp_name'])).".".$ext;
+	$userfile_name = md5_file($_FILES['userfile']['tmp_name']).".".$ext;
 
 	if(file_exists($uploaddir.$userfile_name)){
 		return $userfile_name;
