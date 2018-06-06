@@ -1,6 +1,9 @@
 <?php
 include "assets/page/1head.php";
 include "assets/page/2body.php";
+require "assets/php/get_setting.php";
+$con = get_con();
+$setting = get_setting();
 if(!isset($_SESSION['a_p']) OR !$_SESSION['a_p']){
 	header("Location: ./");
 	exit();
@@ -11,19 +14,47 @@ if(isset($_GET['type'])){
 			echo "<span style='margin-top:20px;margin-bottom:20px;display:block;width:100%;text-align:center;font-size:30px;'>".$_GET['mex']."</span>";
 		break;
 	}
-	
+
 }
 ?>
-<form enctype="multipart/form-data" action="add_product.php" method="POST">
-	<input name="name"/ required>
-	<input name="price"/>
-	<input name="stockist"/>
-	<input name="stock"/>
-	<input name="quantity"/>
-  <input type="hidden" name="MAX_FILE_SIZE" value="30000000">
-  Invia questo file: <input name="userfile" type="file"></br>
-  <input type="submit" value="Invia File">
-</form>
+  
+
+<div style="font-size:20px; margin-top:20px" class="container">
+  <form enctype="multipart/form-data" action="add_product.php" method="POST">
+  
+    <div class="form-group">
+      <input type="text" class="form-control" placeholder="Product name" name="name" required/>
+    </div>
+	
+	<div class="form-group">
+		<input type="number" class="form-control" placeholder="Price (Optional)" name="price"/>
+    </div>
+	<?php 
+	if($setting['stockist']){
+		echo '
+	<div class="form-group">
+		<select name="stockist">
+		';
+		$link = $con->prepare('SELECT * from stockists');
+		$link->execute();
+		while($result = $link->fetch())
+			echo '<option value="'.$result['p_iva'].'">'.$result['name'].'</option>';
+		echo '
+		</select>
+    </div>
+		';
+	}
+	?>
+	<div class="form-group">
+		<input type="number" class="form-control" placeholder="Quantity (Optional)" name="quantity"/>
+    </div>
+	
+	<input type="hidden" name="MAX_FILE_SIZE" value="30000000">
+  Upload IMG: <input name="userfile" type="file"></br>
+  <input type="submit" value="Carica">
+	
+  </form>
+</div>
 <?php
 include "assets/page/4end.php";
 ?>

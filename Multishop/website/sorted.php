@@ -1,7 +1,8 @@
 <?php
 include "assets/page/1head.php";
+
 ?>
-<link rel="stylesheet" href="assets/css/product.css">
+
 <?php
 	include "assets/page/2body.php";
 	try{
@@ -18,9 +19,10 @@ include "assets/page/1head.php";
 		$link->execute();
 		$result = $link->fetch();
 		$num = $result['num'];
+		
 
 		/* Num of row that come back from the query*/
-		$offset = 2;		
+		$offset = 12;		
 		
 		$query ='SELECT * FROM `products` WHERE enable = 1 ORDER BY name ';
 		$limit = 'LIMIT 0,'.$offset;
@@ -42,8 +44,10 @@ include "assets/page/1head.php";
 		$query .=$limit;
 		$link = $con->prepare($query);
 		$link->execute();
+		$i = 0;
 		while($result = $link->fetch()){
-			$price = "";
+			
+			$price = "Not Defined";
 			if($setting['OK'] AND $setting['price'] AND is_numeric($result['price'])){
 				$price = "<span style='font-size:20px;'>".(string)($result['price'])."&euro;</span>";
 			}
@@ -55,46 +59,67 @@ include "assets/page/1head.php";
 			$desc = '';
 			if(isset($result['description']) AND is_string($result['description']))
 				$desc = '<span class="desc">'.$result['description'].'</span>';
-			
-			echo "
-			<div class='product'>
-			
-			<span class='prod_title' style='font-size:25px'>".$result['name']."</span>
-			<img alert='".$result['name']."' src='".$url."'>
-			".$price."
-			".$desc."
-			";
-			if(isset($_SESSION['a_p']) AND $_SESSION['a_p']){
-				echo "<a class='modify' href='modify.php?id=".$result['id']."'>Modify</a>";
-			}
-			echo
-			"
+			if($i == 0)
+				echo '<div style="margin-top:20px;" class="row">';
+			echo '
+			<div style="margin-top:20px;text-align:center;" class="col-sm-4">
+				<div class="card">
+					<div class="card-body">
+						<h5 class="card-title">'.$result['name'].'</h5>
+						<img class="card-img-top" style="max-width:200;" src="'.$url.'" alt="'.$result['name'].'">
+					</div>
+					<ul class="list-group list-group-flush">
+						 <li style="text-align:center" class="list-group-item">'.$price.'</li>
+						 ';
+						 if(isset($_SESSION['a_p']) AND $_SESSION['a_p']){
+							echo '<a style="margin-top:10px;margin-bottom:10px;" href="modify.php?id='.$result['id'].'".><button type="button" style="font-size:16px;" class="btn btn-warning">Modify</button></a>';
+							echo '<a style="margin-top:10px;margin-bottom:10px;" href="delete.php?id='.$result['id'].'".><button type="button" style="font-size:16px;" class="btn btn-danger">Delete</button></a>';
+						}
+						echo '
+					</ul>
+				</div>
 			</div>
-			";
+					';
+			if($i == 2){
+				echo '</div>';
+				$i=0;
+			}
+			else{
+				$i++;
+			}
 			
-			echo "<br>";
-		}
+			}
+			if($i != 0)
+				echo "</div>";
 		
-		echo "<div style='max-width:1000px;display:block;margin:0 auto;'>";
-		
-		if($num == 0 OR ($_GET['page']-1)*$offset >= $num){
-			echo "<div class='product'>
-			<span class='prod_title' style='font-size:25px'>Nothing to se here</span>
-			<img alert='nothing' src='./assets/img/no.png'>
-			
-			</div>";
-		}
 		$page = $_GET['page'];
-		if((($_GET['page']-1)*$offset)-$offset > $num)
-			$page = (int)($num/$offset)+1;
+		
+		if(($_GET['page']-2)*$offset > $num){
+				$page = (int)($num/$offset)+1;
+				if($num%$offset !=0 AND $offset <= $num)
+					$page++;
+		}
+		
+		if($offset > $num)
+			$page++;
+		
+		if($page-1 == $_GET['page']){
+			$page--;
+		}
 		if($page>1)
-			echo "<a style='float:left;' href='".$_SERVER['PHP_SELF']."?page=".($page-1)."'>BACK</a>";
+			echo "<a style='float:left;' href='".$_SERVER['PHP_SELF']."?page=".($page-1)."'><img style='width:50px;margin-top:20px' src='./assets/img/left-arrow.png'></a>";
 		
-
 		if($_GET['page']*$offset<$num)
-			echo "<a style='float:right;' href='".$_SERVER['PHP_SELF']."?page=".($_GET['page']+1)."'>NEXT</a>";
+			echo "<a style='float:right;' href='".$_SERVER['PHP_SELF']."?page=".($_GET['page']+1)."'><img style='width:50px;margin-top:20px' src='./assets/img/right-arrow.png'></a>";
 		
-		echo "</div>";
+		if($num == 0){
+			echo "<p class='h1'>Ops, there is nothing to see here</p>";
+		}
 	}
+	else{
+		echo "<p class='h1'>Ops, there is no connection</p>";
+	}
+	
+	
 include "assets/page/4end.php";
 ?>

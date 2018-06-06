@@ -1,11 +1,19 @@
 </head>
-<body>
+<body style="background:#3399ff">
+
+	<style>
+	li a:hover{
+		text-decoration:none;
+		color:#1784c7;
+	}
+	</style>
+
 	<header class="cd-main-header">
 		<a href="#0" class="cd-logo"></a>
 		
 		<div class="cd-search is-hidden">
 			<form action="#0">
-				<input type="search" placeholder="Search product...">
+				<input style="font-size:16px;" type="search" placeholder="Search product...">
 				<input type="submit" hidden>
 				<input name="page" value="1" style="display:none;">
 			</form>
@@ -44,9 +52,9 @@
 	<main class="cd-main-content">
 		<nav class="cd-side-nav">
 			<ul>
-				<li class="cd-label">Operation</li>
+				<li class="cd-label">Product Operation</li>
 				<li class="has-children">
-					<a href="#0">Product</a>
+					<a class="nav-style" href="#0">Product</a>
 					
 					<ul>
 						<li><a href="category.php&category&page=1">Categories</a></li>
@@ -60,39 +68,12 @@
 					</ul>
 				</li>
 
-				<li class="has-children comments">
-					<a href="#0">Comments</a>
-					
-					<ul>
-						<li><a href="#0">All Comments</a></li>
-						<li><a href="#0">Edit Comment</a></li>
-						<li><a href="#0">Delete Comment</a></li>
-						<li><a href="#0">Peppe Comment</a></li>
-					</ul>
-				</li>
 			</ul>
 
 			<ul>
-				<li class="cd-label">Secondary</li>
-				<li class="has-children bookmarks">
-					<a href="#0">Bookmarks</a>
-					
-					<ul>
-						<li><a href="#0">All Bookmarks</a></li>
-						<li><a href="#0">Edit Bookmark</a></li>
-						<li><a href="#0">Import Bookmark</a></li>
-					</ul>
-				</li>
-				<li class="has-children images">
-					<a href="#0">Images</a>
-					
-					<ul>
-						<li><a href="#0">All Images</a></li>
-						<li><a href="#0">Edit Image</a></li>
-					</ul>
-				</li>
+				<li class="cd-label">Users operation</li>
 
-				<li class="has-children users">
+				<li class="nav-style has-children users">
 					<a href="#0">Users</a>
 					
 					<ul>

@@ -9,11 +9,12 @@ $Structure ="
 CREATE TABLE products(
 	id SMALLINT AUTO_INCREMENT,
 	name VARCHAR(40) NOT NULL UNIQUE,
-	url_img VARCHAR(2083),
+	url_img VARCHAR(2083) default './assets/img/no.png',
 	quantity int(6),
 	description TEXT,
 	price DECIMAL (5,2),
 	enable BOOLEAN default true,
+	added TIMESTAMP defalt now(),
 	PRIMARY KEY (id)
 );
 

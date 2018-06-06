@@ -64,7 +64,8 @@ function add_product($info){
 	$query = "
 	INSERT INTO products(name,url_img,quantity,description,price) VALUE (:name,:url,:quan,:desc,:pric)
 	";
-	
+	if(is_null($info['url']))
+		$info['url'] = "./assets/img/no.png";
 	try{
 		$link = $con->prepare($query);
 		$link->bindParam(":name",$info['name']);

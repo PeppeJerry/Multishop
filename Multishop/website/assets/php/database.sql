@@ -4,7 +4,8 @@ CREATE TABLE products(
 	quantity int(6),
 	description TEXT,
 	price DECIMAL (5,2),
-	url_img VARCHAR(2083),
+	url_img VARCHAR(2083) default './assets/img/no.png',
+	added TIMESTAMP defalt now(),
 	enable BOOLEAN default true,
 	PRIMARY KEY (id)
 );
