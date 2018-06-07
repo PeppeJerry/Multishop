@@ -3,6 +3,7 @@
 <head>
 
 <?php
+	
 	try{
 		if(file_exists("website/assets/php/Created.php")){
 		header("Location: website/");
@@ -12,6 +13,7 @@
 	catch(Exception $e){
 		echo "<title>Configuration</title>";
 	}
+	
 	
 ?>
 
@@ -52,7 +54,7 @@
 	
 	<fieldset>
       <input placeholder="Confirm password" class="password" name="c_pwd" type="password" required>
-	  <div class="help-tip"><p>Database must be:<br>6 to 15 letters or numbers<br>No other chars are allowed!<br><br>Admin must be:<br>8 to 20 letters <br>Numbers are OPTIONAL<br>With 1 CAPS and 1 letter<br>No other chars are allowed!<br><br>Password must be:<br>10 to 30 letters<br>With 1 CAPS and 1 letter<br>With a special char:<br><span style="font-size:15px;">< > ! " ' $ % & / ( ) = # ?</span><br>OPTIONAL<br>You can put also space!</p></div>
+	  <div class="help-tip"><p>Database must be:<br>6 to 15 letters or numbers<br>If database already exist you can out the name<br><br>Admin must be:<br>8 to 20 letters <br>Numbers are OPTIONAL<br>With 1 CAPS and 1 letter<br>No other chars are allowed!<br><br>Password must be:<br>10 to 30 letters<br>With 1 CAPS and 1 letter<br>With a special char:<br><span style="font-size:15px;">< > ! " ' $ % & / ( ) = # ?</span><br>OPTIONAL<br>You can put also space!</p></div>
     </fieldset>
 	<hr/>
 	<h2 style="text-align:center;">Platform Setting</h2>
@@ -67,6 +69,7 @@
       <button name="submit" type="button" style="visibility: hidden;" id="settings-submit">Submit</button>
 	  </div>
     </fieldset>
+	<input name="type" value="normal" hidden>
 	</form>
 </div>
 </body>

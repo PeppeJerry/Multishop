@@ -5,6 +5,7 @@ function add_product($info){
 	
 	if(!isset($info['name']))
 		return "Name+problem";
+	$info['name'] = strtolower($info['name']);
 	$setting = get_setting();
 	
 	if(!$setting['OK'])

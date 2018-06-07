@@ -7,7 +7,6 @@ function secure_user($user){
 	if(strlen($user)<8||strlen($user)>20)			{$error=true;}
 	if(!preg_match("#[a-z]+#",$user))				{$error=true;}
 	if(!preg_match("#[A-Z]+#",$user))				{$error=true;}
-	if(!ctype_alnum($user))							{$error=true;}
 	return $error;
 	
 }

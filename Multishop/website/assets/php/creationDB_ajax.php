@@ -23,13 +23,13 @@ if(is_ajax()){
 		$pwd = $_POST['pwd'];
 		$c_pwd = $_POST['c_pwd'];
 		$datab = $_POST['datab'];
+		$type = $_POST['type'];
 	}
 	catch(Exception $e){
 		$return['result'] = "Missing parameters";
 		echo json_encode($return);
 		exit();
 	}
-	
 	$price = $stock = $stockist = 0;
 	if(isset($_POST['price']))
 		if($_POST['price'])
@@ -62,27 +62,32 @@ if(is_ajax()){
 	require 'DB_Structure.php';
 	try{
 		/* Save database name */
-		$database = fopen("database.php","w");
-		$write = '<?php $db_name = "'.$datab.'"; ?>';
-		fwrite($database,$write);
-		fclose($database);
-	
+		if(!strcmp($type,"normal")){
+			$database = fopen("database.php","w");
+			$write = '<?php $db_name = "'.$datab.'"; ?>';
+			fwrite($database,$write);
+			fclose($database);
+		}
+		else
+			if(!file_exists("database.php")){
+				$return['result'] = "Missing database.php file";
+				echo json_encode($return);
+				exit();
+			}
+			$storepwd = $pwd;
 		/* Creation of database by SQL using PDO */
-		$path = 'mysql:host =localhost';
-		$user = 'root';
-		$pwd_db = '';
-		$con = new PDO($path,$user,$pwd_db);
-		$link = $con->exec('CREATE DATABASE '.$datab);
-		unset($con);
-		unset($link);
+		$path = 'mysql:host=localhost';
+		require "access/LocalUser.php";
+		$con = new PDO($path,$user,$pwd);
+		if(!strcmp($type,"normal")){
+			$link = $con->exec('CREATE DATABASE '.$datab);
+			unset($con);
+			unset($link);
+		}
 		
 		/* Check DB_Structure.php for more information */
 		try{
 			Creation_DB($datab);
-			$Create = fopen("Created.php","w");
-			$write = '<?php $Creation = "Done"; ?>';
-			fwrite($Create,$write);
-			fclose($Create);
 		}
 		catch(Exception $e){
 			$return['result'] = "Structure didn't load";
@@ -98,14 +103,18 @@ if(is_ajax()){
 	}
 	
 	try{
+		
 		require 'is_created.php';
-		Post_Creation($datab,$creation_a,$pwd,$price,$stockist,$stock);
+		Post_Creation($datab,$creation_a,$storepwd,$price,$stockist,$stock);
 	}
 	catch(Exception $e){
 		$return['result'] = "Admin and Levels didn't load";
 		echo json_encode($return);
 		exit();
 	}
+	
+	$created = fopen("Created.php","w");
+	fclose($created);
 	
 	$return['Good'] = true;
 	echo json_encode($return);

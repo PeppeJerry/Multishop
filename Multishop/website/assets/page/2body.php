@@ -12,8 +12,8 @@
 		<a style="margin-top:5px;" href="./" class="cd-logo"><img style="width:90px;" src="assets/img/logo.png" alt="Logo"></a>
 		
 		<div class="cd-search is-hidden">
-			<form action="#0">
-				<input style="font-size:16px;" type="search" placeholder="Search product...">
+			<form action="./search.php?page=1">
+				<input style="font-size:16px;" type="search" placeholder="Search product..." required>
 				<input type="submit" hidden>
 				<input name="page" value="1" style="display:none;">
 			</form>

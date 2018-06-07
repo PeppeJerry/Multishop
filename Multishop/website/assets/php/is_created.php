@@ -1,7 +1,6 @@
 <?php
 
 function Post_Creation($datab,$admin,$pwd,$price,$stockist,$stock){
-	require 'Created.php';
 	$s1 = $price;
 	$s2 = $stockist;
 	$s3 = $stock;

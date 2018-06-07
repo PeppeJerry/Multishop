@@ -2,11 +2,10 @@
 session_start();
 
 try{
-	if(!(file_exists('assets/php/Created.php') AND file_exists('assets/php/database.php'))){
+	if(!file_exists('assets/php/database.php')){
 		header('Location: ../');
 		exit();
 	}
-	require "assets/php/Created.php";
 	require "assets/php/database.php";
 	if(file_exists("assets/php/favicon.php")){
 		require "assets/php/setting.php";

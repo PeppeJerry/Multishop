@@ -23,7 +23,7 @@ $(document).ready(function() {
 				}
 				$("#Display").html('<div class="container"><h1 style="text-align:center;">'+data['result']+'</h1></div>');
 			},
-			error:function(){
+			error:function(jqXHR, textStatus, errorThrown){
 				
 				$("#Display").html('<div class="container"><h1 style="text-align:center;">Submit goes wrong</h1></div>');
 			}
