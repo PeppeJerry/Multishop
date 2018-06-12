@@ -1,6 +1,12 @@
 <?php
 
 function add_product($info){
+	
+	if(!isset($info['category']))
+		$category = 0;
+	else
+		$category = $info['category'];
+	
 	require 'get_setting.php';
 	
 	if(!isset($info['name']))
@@ -15,6 +21,7 @@ function add_product($info){
 	unset($setting['con']);
 	
 	try{
+		$info['name'] = strtolower($info['name']);
 		$query = "SELECT id FROM products WHERE name = :name";
 		$link = $con->prepare($query);
 		$link->bindParam(":name",$info['name']);
@@ -51,11 +58,6 @@ function add_product($info){
 		}
 	}
 	
-	
-	$stock = true;
-	if(!$setting['stock'])
-		$stock = false;
-	
 	if(!isset($info['stock']))
 		$info['stock'] = 0;
 	
@@ -63,13 +65,14 @@ function add_product($info){
 		$info['quantity'] = NULL;
 	
 	$query = "
-	INSERT INTO products(name,url_img,quantity,description,price) VALUE (:name,:url,:quan,:desc,:pric)
+	INSERT INTO products(category,name,url_img,quantity,description,price) VALUE (:cat,:name,:url,:quan,:desc,:pric)
 	";
 	if(is_null($info['url']))
 		$info['url'] = "./assets/img/no.png";
 	try{
 		$link = $con->prepare($query);
 		$link->bindParam(":name",$info['name']);
+		$link->bindParam(":cat",$category);
 		$link->bindParam(":url",$info['url']);
 		$link->bindParam(":quan",$info['quantity']);
 		$link->bindParam(":desc",$info['description']);
@@ -79,31 +82,7 @@ function add_product($info){
 	catch(Exception $e){
 		return "Insert+product+failed";
 	}
-	
-	unset($link);
-	if(!$stock){
-		unset($con);
-		return "Good+you+add+a+new+product";
-	}
 		
-	$sub_query = "
-		(SELECT id FROM products WHERE name = :name)
-	";
-	$query = "
-		INSERT INTO prod_transictions(product,stockist,quantity,action) VALUE (".$sub_query.",:stockl,:quant,:action)
-	";
-	
-	try{
-		$link = $con->prepare($query);
-		$link->bindParam(":name",$info['name']);
-		$link->bindParam(":action",$info['action']);
-		$link->bindParam(":quant",$info['quantity']);
-		$link->bindParam(":stockl",$info['stockist']);
-		$link->execute();
-	}
-	catch(Exception $e){
-		return "Problem+with+product+transictions";
-	}
 	unset($link);
 	unset($con);
 	return "Good+you+add+a+new+product";

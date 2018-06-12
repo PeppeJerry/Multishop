@@ -34,6 +34,8 @@ $link = $con->prepare('SELECT * from products WHERE id="'.$_GET['id'].'"');
 $link->execute();
 $result = $link->fetch();
 
+$category = $result['category'];
+
 ?>
   
 
@@ -58,7 +60,35 @@ $result = $link->fetch();
 	<div class="form-group">
 		<input type="number" class="form-control" value="<?php if(isset($result['quantity'])) echo $result['quantity']?>" placeholder="Quantity (Optional)" name="quantity"/>
     </div>
+	<?php 
+	if($setting['stockist']){
+		echo '
+	<div class="form-group">
+		<select name="stockist">
+		';
+		$link = $con->prepare('SELECT * from stockists');
+		$link->execute();
+		while($result2 = $link->fetch())
+			echo '<option value="'.$result2['p_iva'].'">'.$result2['name'].'</option>';
+		echo '
+		</select>
+    </div>
+		';
+	}
 	
+	$link = $con->prepare("SELECT id,name FROM categories");
+	$link->execute();
+	
+	echo "<select style='margin-bottom:10px' name='category'>";
+	while($result3 = $link->fetch()){
+		echo '<option value="'.$result3['id'].'"';
+		if($result3['id'] == $category)
+			echo " selected ";
+		echo '>'.$result3['name'].'</option>';
+	}
+	echo "</select>";
+	?>
+	<br>
 	<input type="hidden" name="MAX_FILE_SIZE" value="30000000">
   Upload IMG: <input name="userfile" type="file"></br>
   <input name="previous_IMG" value="<?php if(isset($result['url_img'])) echo $result['url_img']; else

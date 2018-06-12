@@ -58,7 +58,7 @@ button:hover, a:hover {
   if($_SESSION['a_a'])
 	  echo "<span style='margin:10;margin-bottom:10px;color:Blue;font-size:25px;'>Product control: <span style='color:Green'>Yes</span></span><br>";
   else
-	  echo "<span style='margin:10;margin-bottom:10px;color:Blue;font-size:25px;'>Procuct control: <span style='color:Red'>No</span></span><br>";
+	  echo "<span style='margin:10;margin-bottom:10px;color:Blue;font-size:25px;'>Product control: <span style='color:Red'>No</span></span><br>";
   ?>
  </div>
 </div>

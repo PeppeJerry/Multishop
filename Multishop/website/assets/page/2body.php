@@ -12,8 +12,8 @@
 		<a style="margin-top:5px;" href="./" class="cd-logo"><img style="width:90px;" src="assets/img/logo.png" alt="Logo"></a>
 		
 		<div class="cd-search is-hidden">
-			<form action="./search.php?page=1">
-				<input style="font-size:16px;" type="search" placeholder="Search product..." required>
+			<form action="./search.php?page=1" method="GET">
+				<input style="font-size:16px;" name="search" type="search" placeholder="Search product..." required>
 				<input type="submit" hidden>
 				<input name="page" value="1" style="display:none;">
 			</form>
@@ -52,36 +52,61 @@
 	<main class="cd-main-content">
 		<nav class="cd-side-nav">
 			<ul>
-				<li class="cd-label">Product Operation</li>
+				<li class="cd-label">Product Reserch</li>
 				<li class="has-children">
+					<a class="nav-style" href="#0">Search</a>
+					
+					<ul>
+						<li><a href="category.php&category">Search by Category</a></li>
+						<li><a href="sorted.php?page=1">Search A to Z</a></li>
+					</ul>
+				</li>
+
+			</ul>
+			<?php if(isset($_SESSION['a_p'])){
+							echo '
+			<ul>
+				<li class="cd-label">Product Operation</li>
+				<li class="has-children comments">
 					<a class="nav-style" href="#0">Product</a>
 					
 					<ul>
-						<li><a href="category.php&category&page=1">Categories</a></li>
-						<li><a href="sorted.php?page=1">A to Z</a></li>
-						<?php if(isset($_SESSION['a_p']) AND $_SESSION['a_p'])
-							echo "
-						<li><a href='newproduct.php'>Add product</a></li>
-						";
+					<li><a href="./newcategory.php">Add & List category</a></li>
+						';
+						if($_SESSION['a_p'])
+						echo '
+						<li><a href="./newproduct.php">Add product</a></li>';
+						
+			}
 							?>
+			<?php
+			echo '
 					</ul>
 				</li>
 
-			</ul>
+			</ul>';
+			?>
 
-			<ul>
-				<li class="cd-label">Users operation</li>
-
-				<li class="nav-style has-children users">
-					<a href="#0">Users</a>
+			
+			<?php
+			if(isset($_SESSION['a_a'])){
+				echo '
+				<ul>
+					<li class="cd-label">User operation</li>
+					<li class="nav-style has-children users">
 					
-					<ul>
-						<li><a href="#0">All Users</a></li>
-						<li><a href="#0">Edit User</a></li>
-						<li><a href="#0">Add User</a></li>
-					</ul>
-				</li>
-			</ul>
+						<a href="#0">Users</a>
+					
+						<ul>
+						<li><a href="./newadmin.php">New Admin / List Admin</a></li>
+						<li><a href="./changepassword.php">Change Password</a></li>
+						</ul>
+					</li>
+				</ul>
+				';
+			}
+			?>
+			
 
 		</nav>
 

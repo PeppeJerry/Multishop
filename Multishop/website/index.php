@@ -7,8 +7,9 @@ $setting = get_setting();
 $link = $con->prepare('SELECT * FROM products WHERE enable = 1 ORDER BY added LIMIT 3');
 $link->execute();
 $i = 0;
-
+$f = 0;
 while($result = $link->fetch()){
+	$f++;
 	if($i==0){
 		echo "<h1 style='margin:0 auto;'>New Entry!</h1><div style='margin-top:20px;' class='row'>";
 	}
@@ -49,6 +50,12 @@ while($result = $link->fetch()){
 	}
 	$i++;
 	
+}
+if($f == 0){
+	echo "<h1 style='margin:0 auto;'>Nothing to see here</h1>";
+	if(isset($_SESSION['a_p']) AND $_SESSION['a_p'])
+		echo "<a href='./newproduct.php'><button type='button' style='display:block;margin:0 auto;font-size:18px;' class='btn btn-dark'>Add Product</button>
+</a>";
 }
 ?>
 <?php

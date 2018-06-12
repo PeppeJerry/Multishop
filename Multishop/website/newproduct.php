@@ -44,7 +44,21 @@ if(isset($_GET['type'])){
     </div>
 		';
 	}
+	
+	$link = $con->prepare("SELECT id,name FROM categories");
+	$link->execute();
+	
+	echo "<select style='margin-bottom:10px' name='category'>";
+	while($result = $link->fetch()){
+		echo '<option value='.$result['id'].'>'.$result['name'].'</option>';
+	}
+	echo "</select>";
+	
 	?>
+	<div class="form-group">
+			<input type="text" class="form-control" placeholder="Description (Optional)" name="description" />
+	</div>
+	<br>
 	<div class="form-group">
 		<input type="number" class="form-control" placeholder="Quantity (Optional)" name="quantity"/>
     </div>

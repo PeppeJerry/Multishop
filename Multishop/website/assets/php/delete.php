@@ -12,5 +12,6 @@ function delete_product($id){
 	}
 	$link = $con->prepare('DELETE FROM products WHERE id = '.$id);
 	$link->execute();
+
 	return true;
 }

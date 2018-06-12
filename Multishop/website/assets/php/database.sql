@@ -38,14 +38,15 @@ CREATE TABLE users(
 CREATE TABLE stockists(
 	p_iva INT(11),
 	name VARCHAR(30) NOT NULL,
-	CAP int(5) default 0
+	CAP int(5) default 0,
+	PRIMARY KEY (p_iva)
 );
 
 CREATE TABLE prod_transictions(
 	product SMALLINT references products(id),
 	stockist INT(11) references stockist(p_iva),
 	quantity INT(6),
-	action text,
+	action varchar(60);
 	time_action TIMESTAMP default NOW(),
 	id SMALLINT AUTO_INCREMENT,
 	PRIMARY KEY(id)
@@ -55,6 +56,6 @@ CREATE TABLE settings(
 	id SMALLINT,
 	price BOOLEAN default false,
 	stockist BOOLEAN default false,
-	stock BOOLEAN default false,
+	stock BOOLEAN default true,
 	PRIMARY KEY (id)
 );

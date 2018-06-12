@@ -7,9 +7,6 @@ try{
 		exit();
 	}
 	require "assets/php/database.php";
-	if(file_exists("assets/php/favicon.php")){
-		require "assets/php/setting.php";
-	}
 	require "assets/php/check_session.php";
 }
 catch(Exception $e){
@@ -19,6 +16,7 @@ catch(Exception $e){
 
 if(!isset($_SESSION['user']))
 	require "assets/php/get_con.php";
+require "assets/php/Created.php";
 
 ?>
 <html class="no-js">
@@ -34,5 +32,6 @@ if(!isset($_SESSION['user']))
 	<script src="assets/js/generalpage.js"></script>
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-	<title><?php if(!isset($website))echo $db_name;else echo $website; ?></title>
-	<?php if(isset($favicon))echo $favicon; ?>
+	<title><?php echo $site_name; ?></title>
+	<link rel="icon" href="<?php echo $icon?>" sizes="16x16">
+	

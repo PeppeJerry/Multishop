@@ -32,10 +32,20 @@ if(isset($_POST) AND $_SESSION['a_p']){
 		exit();
 	}
 
-	if(update('UPDATE products SET id='.$_POST['id'].' WHERE name = "'.$_POST['name'].'"'))
-	
-	header ("Location: ./modify.php?mex=Modification+applied&id=".$_POST['id']);
-	exit();
+	if(update('UPDATE products SET id='.$_POST['id'].' WHERE name = "'.$_POST['name'].'"')){
+		$con = get_con();
+		$action = " Modify Product (".$_SESSION['user'].")";
+		
+		$link = $con->prepare("INSERT INTO prod_transictions(product,stockist,action) VALUE (:prod,:stock,:action)");
+		
+		$link->bindParam(":prod",$_POST['id']);
+		$link->bindParam(":stock",$_POST['stockist']);
+		$link->bindParam(":action",$action);
+		
+		$link->execute();
+		header ("Location: ./modify.php?mex=Modification+applied&id=".$_POST['id']);
+		exit();
+	}
 	
 }
 header("Location: ./");

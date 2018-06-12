@@ -4,7 +4,7 @@ if(isset($_SESSION['user'])){
 	require "get_con.php";
 	$con = get_con();
 	if(!$con){
-		header('Location: ./index.php?error=Connection+aborted');
+		header('Location: ./index.php?error=2');
 		exit();
 	}
 	
@@ -16,19 +16,19 @@ if(isset($_SESSION['user'])){
 	
 	if(!isset($result['userid'])){
 		session_destroy();
-		header('Location: ./login.php?error=Account+missing');
+		header('Location: ./login.php?error=5');
 		exit();
 	}
 	
 	if(!$result['enable']){
 		session_destroy();
-		header('Location: ./login.php?error=Account+disabled');
+		header('Location: ./login.php?error=3');
 		exit();
 	}
 	
 	if(strcmp(md5($result['pwd']),$_SESSION['check'])){
 		session_destroy();
-		header('Location: ./login.php?error=Session+finished');
+		header('Location: ./login.php?error=5');
 		exit();
 	}
 	

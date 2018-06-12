@@ -114,7 +114,10 @@ if(is_ajax()){
 	}
 	
 	$created = fopen("Created.php","w");
+	$write = "<?php \$site_name='".$datab."'; \$icon='./assets/img/temporaly_icon.png';";
+	fwrite($created,$write);
 	fclose($created);
+	
 	
 	$return['Good'] = true;
 	echo json_encode($return);

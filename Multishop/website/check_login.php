@@ -1,27 +1,21 @@
 <?php
-require './assets/php/secure_user.php';
 
 try{
 	$user = $_POST['admin'];
 	$pwd  = $_POST['pwd'];
 }
 catch(Exception $e){
-	header('Location: ./login.php?error=Missing+param');
+	header('Location: ./login.php?error=1');
 	exit();
 }
 
-
-if(secure_user($user)){
-	header('Location: ./login.php?error=Login+failed');
-	exit();
-}
 $pwd = hash("sha512",md5($pwd).$pwd);
 
 require "./assets/php/get_con.php";
 
 $con = get_con();
 if(!$con){
-	header('Location: ./login.php?error=Connection+aborted');
+	header('Location: ./login.php?error=2');
 	exit();
 }
 
@@ -37,12 +31,12 @@ $result = $link->fetch();
 
 
 if(!isset($result['userid'])){
-	header('Location: ./login.php?error=Login+failed');
+	header('Location: ./login.php?error=1');
 	exit();
 }
 
 if(!$result['enable']){
-	header('Location: ./login.php?error=Account+disabled');
+	header('Location: ./login.php?error=3');
 	exit();
 }
 
