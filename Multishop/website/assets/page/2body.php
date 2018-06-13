@@ -42,6 +42,9 @@
 						<li><a href="assets/php/logout.php">Logout</a></li>';
 						else
 							echo '<li><a href="login.php">Login</a></li>';
+						if(isset($_SESSION['a_a']) AND $_SESSION['a_a'] AND $_SESSION['priority'] == 1){
+							echo '<li><a href="log.php">Log</a></li>';
+						}
 						?>
 					</ul>
 				</li>

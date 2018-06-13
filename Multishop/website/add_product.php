@@ -31,7 +31,7 @@ if(isset($_POST) AND $_SESSION['a_p']){
 		$query = 'INSERT INTO prod_transictions(product,stockist,action) VALUES (:prod,:stock,:action)';
 		$link = $con->prepare($query);
 		
-		$action = "Added Product (".$_SESSION['user'].") [".$_POST['name']."]";
+		$action = "Added Product By (".$_SESSION['user'].") [".$_POST['name']."]";
 		
 		
 		$link->bindParam(":prod",$prod);

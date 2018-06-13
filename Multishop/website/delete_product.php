@@ -27,7 +27,7 @@ $name = $name['name'];
 	
 	
 	$id = 2;
-	$action = "Delete product (".$_SESSION['user'].")[".$name."]";
+	$action = "Delete product By (".$_SESSION['user'].") [".$name."]";
 	$query = 'INSERT INTO prod_transictions(product,stockist,action) VALUES (:prod,:id,:action)';
 	$link = $con->prepare($query);
 	$link->bindParam(":prod",$_GET['id']);

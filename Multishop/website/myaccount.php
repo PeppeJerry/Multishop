@@ -63,6 +63,13 @@ button:hover, a:hover {
 	  echo "<span style='margin:10;margin-bottom:10px;color:Blue;font-size:25px;'>Product control: <span style='color:Green'>Yes</span></span><br>";
   else
 	  echo "<span style='margin:10;margin-bottom:10px;color:Blue;font-size:25px;'>Product control: <span style='color:Red'>No</span></span><br>";
+  $con = get_con();
+  $link = $con->prepare("SELECT name FROM priorities WHERE lvl=:prior");
+  $link->bindParam(":prior",$_SESSION['priority']);
+  $link->execute();
+  $name = $link->fetch();
+  $name = $name['name'];
+  echo "<span style='margin:10;margin-bottom:10px;color:Blue;font-size:25px;'>Priority: <span style='color:Orange'>".$name."</span></span><br>";
   ?>
  </div>
 </div>
