@@ -17,6 +17,13 @@ if(isset($_GET['type'])){
 
 }
 
+$link = $con->prepare("SELECT id,name FROM categories");
+$link->execute();
+$category;
+while($result = $link->fetch()){
+	$category[$result['id']] = $result['name'];
+}
+
 if(!isset($_GET['id']) OR !is_numeric($_GET['id'])){
 	echo "<p style='margin-top:20px;font-size:17px;'>Ops, wrong id</p>";
 }
@@ -40,7 +47,7 @@ while($num == 1 AND $result = $link->fetch()){
 			<?php
 		$price = "Not Defined";
 		if($setting['OK'] AND $setting['price'] AND is_numeric($result['price'])){
-			$price = "<span style='font-size:20px;'>".(string)($result['price'])."&euro;</span>";
+			$price = (string)($result['price'])."&euro;";
 		}
 		
 		$url = "./assets/img/no.png";
@@ -58,8 +65,17 @@ while($num == 1 AND $result = $link->fetch()){
 					<img class="card-img-top" style="max-width:200;" src="'.$url.'" alt="'.$result['name'].'">
 				</div>
 				<ul class="list-group list-group-flush">
-					 <li style="text-align:center" class="list-group-item">'.$price.'</li>
 					 ';
+					 if(strcmp($price,"Not Defined")){
+							echo '<li style="font-size:20px;text-align:center" class="list-group-item">'.$price.'</li>';
+						}
+						if(isset($category[$result['category']]) AND $result['category']!= 1)
+							echo '<li style="text-align:center" class="list-group-item">'.$category[$result['category']].'</li>';
+						if(!strcmp($result['description'],""))
+							echo "<span style='border-bottom:1px solid rgba(0,0,0,.125);'/></span>";
+						else
+							echo '
+							<li style="text-align:center" class="list-group-item">'.$result['description'].'</li>';
 					 if(isset($_SESSION['a_p']) AND $_SESSION['a_p']){
 						echo '<a style="margin-top:10px;margin-bottom:10px;" href="delete_product.php?id='.$result['id'].'".><button type="button" style="font-size:16px;" value="'.$_GET['id'].'" class="btn btn-danger">Confirm</button></a>';
 					}

@@ -33,12 +33,15 @@ $link->bindParam(":name",$name);
 $link->bindParam(":desc",$_POST['desc']);
 $link->execute();
 
-$res = $link->rowCount();
-if($res != 1){
-	header("Location: ./newcategory.php?error=3"); //An error
-	exit();
-}
-else{
-	header("Location: ./newcategory.php?error=4"); //Done
-	exit();
-}
+$query = 'INSERT INTO prod_transictions(product,stockist,action) VALUES (:prod,:stock,:action)';
+$link = $con->prepare($query);
+		
+$action = "Added Category (".$_SESSION['user'].") [".$name."]";
+
+$stock = 2;
+$link->bindParam(":prod",$prod);
+$link->bindParam(":stock",$stock);
+$link->bindParam(":action",$action);
+$link->execute();
+header("Location: ./newcategory.php?error=4"); //Done
+exit();

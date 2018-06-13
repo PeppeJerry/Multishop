@@ -47,6 +47,13 @@ include "assets/page/1head.php";
 			$limit = "LIMIT 0,".$offset; 
 		}
 		
+		$link = $con->prepare("SELECT id,name FROM categories");
+		$link->execute();
+		$category;
+		while($result = $link->fetch()){
+			$category[$result['id']] = $result['name'];
+		}
+		
 		$query .=$limit;
 		$link = $con->prepare($query);
 		$link->bindParam(":name",$name);
@@ -78,6 +85,13 @@ include "assets/page/1head.php";
 					<ul class="list-group list-group-flush">
 						 <li style="text-align:center" class="list-group-item">'.$price.'</li>
 						 ';
+						if(isset($category[$result['category']]) AND $result['category']!= 1)
+							echo '<li style="text-align:center" class="list-group-item">'.$category[$result['category']].'</li>';
+						if(!strcmp($result['description'],""))
+							echo "<span style='border-bottom:1px solid rgba(0,0,0,.125);'/></span>";
+						else
+							echo '
+							<li style="text-align:center" class="list-group-item">'.$result['description'].'</li>';
 						 if(isset($_SESSION['a_p']) AND $_SESSION['a_p']){
 							echo '<a style="margin-top:10px;margin-bottom:10px;" href="modify.php?id='.$result['id'].'".><button type="button" style="font-size:16px;" class="btn btn-warning">Modify</button></a>';
 							echo '<a style="margin-top:10px;margin-bottom:10px;" href="delete.php?id='.$result['id'].'".><button type="button" style="font-size:16px;" class="btn btn-danger">Delete</button></a>';

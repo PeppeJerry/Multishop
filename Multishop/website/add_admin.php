@@ -12,8 +12,6 @@ $priority = $link->fetch();
 $priority = $priority['priority'];
 
 if(!($priority == 1 OR $priority == 2)){
-	echo "OK";
-	exit();
 	header("Location: ./newadmin.php?error=1"); // Missing privilage 1
 	exit();
 }
@@ -71,6 +69,14 @@ $link->bindParam(":pwd",$pwd);
 $link->bindParam(":a_a",$a_a);
 $link->bindParam(":a_p",$a_p);
 $link->bindParam(":prio",$_POST['priority']);
+$link->execute();
+
+$stock = 2;
+$action = "Added User [".$user."] from [".$_SESSION['user']."]";
+$query = 'INSERT INTO prod_transictions(stockist,action) VALUES (:stock,:action)';
+$link = $con->prepare($query);
+$link->bindParam(":action",$action);
+$link->bindParam(":stock",$stock);
 $link->execute();
 
 header("Location: ./newadmin.php?error=5"); // Done!

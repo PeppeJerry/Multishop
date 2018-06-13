@@ -19,7 +19,7 @@ if(!$con){
 	exit();
 }
 
-$query = "SELECT userid,a_product,a_admin,enable FROM users WHERE userid = :user AND pwd = :pwd";
+$query = "SELECT * FROM users WHERE userid = :user AND pwd = :pwd";
 
 $link = $con->prepare($query);
 
@@ -46,5 +46,6 @@ $_SESSION['user']=$result['userid'];
 $_SESSION['a_p']=$result['a_product'];
 $_SESSION['a_a']=$result['a_admin'];
 $_SESSION['check'] = md5($pwd);
+$_SESSION['priority'] = $result['priority'];
 
 header('Location: ./index.php');

@@ -57,7 +57,7 @@
 					<a class="nav-style" href="#0">Search</a>
 					
 					<ul>
-						<li><a href="category.php&category">Search by Category</a></li>
+						<li><a href="category.php?page=1">Search by Category</a></li>
 						<li><a href="sorted.php?page=1">Search A to Z</a></li>
 					</ul>
 				</li>
@@ -71,7 +71,7 @@
 					<a class="nav-style" href="#0">Product</a>
 					
 					<ul>
-					<li><a href="./newcategory.php">Add & List category</a></li>
+					<li><a href="./newcategory.php">Add, List, Delete category</a></li>
 						';
 						if($_SESSION['a_p'])
 						echo '
@@ -100,6 +100,10 @@
 						<ul>
 						<li><a href="./newadmin.php">New Admin / List Admin</a></li>
 						<li><a href="./changepassword.php">Change Password</a></li>
+						';
+						if(isset($_SESSION['a_p']) AND $_SESSION['a_p'] AND $_SESSION['priority'] == 1)
+							echo '<li><a href="./deleteadmin.php">Delete Admin</a></li>';
+						echo'
 						</ul>
 					</li>
 				</ul>

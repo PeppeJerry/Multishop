@@ -46,7 +46,11 @@ if(isset($_GET['error'])){
 
 ?>
 
+
+
 <form enctype="multipart/form-data" action="new_password.php" method="POST">
+
+<p style="font-size:16px;background:white;display:block;max-width:300px;padding:10px;margin:0 auto;margin-top:20px">Password must be:<br>10 to 30 letters<br>With 1 CAPS and 1 letter<br>With a special char:<br><span style="font-size:15px;">< > ! " \' $ % & / ( ) = # ?</span><br>OPTIONAL<br>You can put also space!</p>
   
 	<div style ="margin-top:30px;"class="form-group">
       <input type="Password" class="form-control" placeholder="Current Password" name="pwd" required/>

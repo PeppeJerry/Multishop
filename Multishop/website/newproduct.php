@@ -29,22 +29,10 @@ if(isset($_GET['type'])){
 	<div class="form-group">
 		<input type="number" step=".01" class="form-control" placeholder="Price (Optional)" name="price"/>
     </div>
-	<?php 
-	if($setting['stockist']){
-		echo '
 	<div class="form-group">
-		<select name="stockist">
-		';
-		$link = $con->prepare('SELECT * from stockists');
-		$link->execute();
-		while($result = $link->fetch())
-			echo '<option value="'.$result['p_iva'].'">'.$result['name'].'</option>';
-		echo '
-		</select>
-    </div>
-		';
-	}
-	
+		Category
+	</div>
+	<?php
 	$link = $con->prepare("SELECT id,name FROM categories");
 	$link->execute();
 	
@@ -58,7 +46,6 @@ if(isset($_GET['type'])){
 	<div class="form-group">
 			<input type="text" class="form-control" placeholder="Description (Optional)" name="description" />
 	</div>
-	<br>
 	<div class="form-group">
 		<input type="number" class="form-control" placeholder="Quantity (Optional)" name="quantity"/>
     </div>

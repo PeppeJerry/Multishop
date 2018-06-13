@@ -46,7 +46,7 @@ CREATE TABLE prod_transictions(
 	product SMALLINT references products(id),
 	stockist INT(11) references stockist(p_iva),
 	quantity INT(6),
-	action varchar(60);
+	action text;
 	time_action TIMESTAMP default NOW(),
 	id SMALLINT AUTO_INCREMENT,
 	PRIMARY KEY(id)

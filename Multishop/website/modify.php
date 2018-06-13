@@ -56,25 +56,17 @@ $category = $result['category'];
 		<input type="number" step=".01" class="form-control" value="<?php if(isset($result['price'])) echo $result['price']?>" placeholder="Price (Optional)" name="price"/>
     </div>
 	
+	<div class="form-group">
+			<input type="text" class="form-control" placeholder="Description (Optional)" name="description" value="<?php if(isset($result['description'])) echo $result['description'];?>"/>
+	</div>
 	
 	<div class="form-group">
 		<input type="number" class="form-control" value="<?php if(isset($result['quantity'])) echo $result['quantity']?>" placeholder="Quantity (Optional)" name="quantity"/>
     </div>
-	<?php 
-	if($setting['stockist']){
-		echo '
 	<div class="form-group">
-		<select name="stockist">
-		';
-		$link = $con->prepare('SELECT * from stockists');
-		$link->execute();
-		while($result2 = $link->fetch())
-			echo '<option value="'.$result2['p_iva'].'">'.$result2['name'].'</option>';
-		echo '
-		</select>
-    </div>
-		';
-	}
+		Category
+	</div>
+	<?php 
 	
 	$link = $con->prepare("SELECT id,name FROM categories");
 	$link->execute();

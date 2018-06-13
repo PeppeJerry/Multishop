@@ -1,7 +1,7 @@
 <?php
 
 session_start();
-
+require "assets/php/check_session.php";
 if(!isset($_SESSION['a_p'])){
 	header("Location: ./");
 	exit();
@@ -20,6 +20,7 @@ if(isset($_POST) AND $_SESSION['a_p']){
 	else{
 		$image = "./assets/img/".basename($_POST['previous_IMG']);
 	}
+	$_POST['stockist'] = 2;
 	$_POST['url'] = $image;
 	$_POST['action'] = 'Modificated ('.$_SESSION['user'].')';
 	if(!delete_product($_POST['id'])){
@@ -34,7 +35,7 @@ if(isset($_POST) AND $_SESSION['a_p']){
 
 	if(update('UPDATE products SET id='.$_POST['id'].' WHERE name = "'.$_POST['name'].'"')){
 		$con = get_con();
-		$action = " Modify Product (".$_SESSION['user'].")";
+		$action = " Modify Product (".$_SESSION['user'].") [".$_POST['name']."]";
 		
 		$link = $con->prepare("INSERT INTO prod_transictions(product,stockist,action) VALUE (:prod,:stock,:action)");
 		

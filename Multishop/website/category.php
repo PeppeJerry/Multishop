@@ -1,27 +1,60 @@
 <?php
 include "assets/page/1head.php";
+include "assets/page/2body.php";
+include "assets/php/get_setting.php";
 
-?>
+$con = get_con();
+$setting = get_setting();
+$check = true;
+if(isset($_GET['category'])){
+	$link = $con->prepare("SELECT COUNT(*) as num FROM categories WHERE id=:id");
+	$link->bindParam(":id",$_GET['category']);
+	$link->execute();
+	$check = $link->fetch();
+	$check = $check['num'];
+	if($check != 0){
+		$check = true;
+	}
+	else{
+		$check = false;
+	}
+}
 
-<?php
-	include "assets/page/2body.php";
-	try{
-		require "assets/php/get_setting.php";
-		$setting = get_setting();
+	
+
+
+
+if(!isset($_GET['category']) OR !$check){
+	if(!$check){
+		echo "<p style='max-width:300px;margin:0 auto;margin-top:20px;background:#ffd480;padding:5;font-size:18;text-align:center;'> Invalid Category </p>";
+	}
+	echo '<div style="text-align:center;max-width:300px;font-size:18px;display:block;background:white;margin:0 auto;margin-top:20px;">
+	Research by Category
+	</div>';
+	$link = $con->prepare("SELECT * FROM categories");
+	$link->execute();
+	
+	echo '<form style="margin-top:20px;" enctype="multipart/form-data" action="#" method="GET">';
+	echo "<select class='form-control' name='category'>";
+	while($result = $link->fetch()){
+		echo "<option value='".$result['id']."'>".$result['name']."</option>";
+	}
+	echo "</select>";
+	echo '<input style="font-size:20px;display:block; margin:0 auto;margin-top:10px;" value="Confirm" type="submit" class="btn btn-default">';
+	echo "</form>";
+	
+}
+else{
+	if($check){
 		$con = get_con();
-	}
-	catch(Exception $e){
-		$con = false;
-		
-	}
-	if($con){
 		$link = $con->prepare("SELECT id,name FROM categories");
 		$link->execute();
 		$category;
 		while($result = $link->fetch()){
 			$category[$result['id']] = $result['name'];
 		}
-		$link = $con->prepare("SELECT count(*) as num FROM `products` WHERE enable = 1");
+		$link = $con->prepare("SELECT count(*) as num FROM `products` WHERE enable = 1 AND category = :cat");
+		$link->bindParam(":cat",$_GET['category']);
 		$link->execute();
 		$result = $link->fetch();
 		$num = $result['num'];
@@ -30,7 +63,7 @@ include "assets/page/1head.php";
 		/* Num of row that come back from the query*/
 		$offset = 12;		
 		
-		$query ='SELECT * FROM `products` WHERE enable = 1 ORDER BY name ';
+		$query ='SELECT * FROM `products` WHERE enable = 1 AND category = :cat ORDER BY name ';
 		$limit = 'LIMIT 0,'.$offset;
 		
 		if(isset($_GET['page']) AND is_numeric($_GET['page'])){
@@ -49,6 +82,7 @@ include "assets/page/1head.php";
 		
 		$query .=$limit;
 		$link = $con->prepare($query);
+		$link->bindParam(":cat",$_GET['category']);
 		$link->execute();
 		$i = 0;
 		while($result = $link->fetch()){
@@ -119,19 +153,19 @@ include "assets/page/1head.php";
 			$page--;
 		}
 		if($page>1)
-			echo "<a style='float:left;' href='".$_SERVER['PHP_SELF']."?page=".($page-1)."'><img style='width:50px;margin-top:20px' src='./assets/img/left-arrow.png'></a>";
+			echo "<a style='float:left;' href='".$_SERVER['PHP_SELF']."?page=".($page-1)."&category=".$_GET['category']."'><img style='width:50px;margin-top:20px' src='./assets/img/left-arrow.png'></a>";
 		
 		if($_GET['page']*$offset<$num)
-			echo "<a style='float:right;' href='".$_SERVER['PHP_SELF']."?page=".($_GET['page']+1)."'><img style='width:50px;margin-top:20px' src='./assets/img/right-arrow.png'></a>";
+			echo "<a style='float:right;' href='".$_SERVER['PHP_SELF']."?page=".($_GET['page']+1)."&category=".$_GET['category']."'><img style='width:50px;margin-top:20px' src='./assets/img/right-arrow.png'></a>";
 		
 		if($num == 0){
 			echo "<p class='h1'>Ops, there is nothing to see here</p>";
 		}
 	}
-	else{
-		echo "<p class='h1'>Ops, there is no connection</p>";
-	}
-	
-	
+}
+
+?>
+
+<?php
 include "assets/page/4end.php";
 ?>

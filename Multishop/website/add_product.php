@@ -15,6 +15,7 @@ if(isset($_POST) AND $_SESSION['a_p']){
 		$_POST['url'] = "./assets/img/".$image;
 	}
 	$_POST['action'] = 'Add Product ('.$_SESSION['user'].')';
+	$_POST['stockist'] = 2;
 	$mex = add_product($_POST);
 	if(!strcmp($mex,"Good+you+add+a+new+product")){
 		require "assets/php/get_con.php";
@@ -30,7 +31,7 @@ if(isset($_POST) AND $_SESSION['a_p']){
 		$query = 'INSERT INTO prod_transictions(product,stockist,action) VALUES (:prod,:stock,:action)';
 		$link = $con->prepare($query);
 		
-		$action = "Added Product (".$_SESSION['user'].")";
+		$action = "Added Product (".$_SESSION['user'].") [".$_POST['name']."]";
 		
 		
 		$link->bindParam(":prod",$prod);

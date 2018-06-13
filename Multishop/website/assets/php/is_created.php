@@ -2,8 +2,8 @@
 
 function Post_Creation($datab,$admin,$pwd,$price,$stockist,$stock){
 	$s1 = $price;
-	$s2 = $stockist;
-	$s3 = $stock;
+	$s2 = true;
+	$s3 = true;
 	$path = 'mysql:host=localhost;dbname='.$datab;
 	$user = 'root';
 	$pwd_db = '';

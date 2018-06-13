@@ -31,4 +31,3 @@ function Back_to_the_future(){
 	if(file_exists('Created.php'))
 		unlink('Created.php');
 }
-Back_to_the_future();

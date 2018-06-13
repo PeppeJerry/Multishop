@@ -61,7 +61,6 @@
 	<fieldset>
 	<hr/>
 	<h4>Product with price<input type="checkbox" name="price" value="true"/></h4><hr/>
-	<h4>Product Provenance<input type="checkbox" name="stockist" value="true"/></h4><hr/>
 	</fieldset>
 	<div id="ToChange">
 	  <button name="check" type="submit" id="connection">Connection</button>

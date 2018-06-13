@@ -2,6 +2,10 @@
 include "assets/page/1head.php";
 include "assets/page/2body.php";
 
+if(!isset($_SESSION['user'])){
+	header("Location: ./");
+	exit();
+}
 
 ?>
 <style>

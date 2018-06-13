@@ -8,7 +8,7 @@ if(isset($_SESSION['user'])){
 		exit();
 	}
 	
-	$query = "SELECT userid,a_product,a_admin,pwd,enable FROM users WHERE userid = :user";
+	$query = "SELECT * FROM users WHERE userid = :user";
 	$link = $con->prepare($query);
 	$link->bindParam(":user",$_SESSION['user']);
 	$link->execute();
@@ -35,6 +35,7 @@ if(isset($_SESSION['user'])){
 	$_SESSION['user']=$result['userid'];
 	$_SESSION['a_p']=$result['a_product'];
 	$_SESSION['a_a']=$result['a_admin'];
+	$_SESSION['priority']=$result['priority'];
 	unset($con);
 	unset($link);
 }
